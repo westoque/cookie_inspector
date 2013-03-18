@@ -1,0 +1,44 @@
+body {
+  padding: 0;
+  margin: 0;
+  font-family: 'Lucida Grande', sans-serif;
+  font-size: 11px;
+}
+
+a {
+  font-family: 'Lucida Grande', sans-serif;
+}
+
+#footer {
+  height: 20px;
+  min-width: 800px;
+  background-color: rgb(101, 111, 130);
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 123;
+  color: #FFF;
+}
+
+#footer a {
+  color: #FFF;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+#add-cookie-form {
+  position: absolute;
+  height: 300px;
+  width: 500px;
+  z-index: 124;
+  border: 1px solid black;
+  background: #FFF;
+  top: 0;
+  left: 0;
+  display: none;
+}
+
+#main {
+  margin-bottom: 20px;
+}
