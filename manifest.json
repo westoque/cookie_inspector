@@ -11,9 +11,9 @@
       "js": [ "inject_cookie_inspector.js" ],
       "matches": ["http://*/", "http://chrome-devtools-frontend.appspot.com/*/devtools.html?*", "https://chrome-devtools-frontend.appspot.com/*/devtools.html?*" ]
    } ],
-   "content_security_policy": "default-src 'self'; connect-src http: https:; script-src 'self' https://chrome-devtools-frontend.appspot.com; img-src 'self' data:; style-src 'self' 'unsafe-inline'; frame-src 'self' about: ",
-   "description": "Edit cookies right from the inspector tab",
+   "content_security_policy": "default-src 'self'; connect-src http: https:; script-src 'self' 'unsafe-eval' https://chrome-devtools-frontend.appspot.com; img-src 'self' data:; style-src 'self' 'unsafe-inline'; frame-src 'self' about: ",
    "devtools_page": "devtools-page.html",
+   "description": "Edit cookies right from the inspector tab",
    "homepage_url": "https://github.com/westoque",
    //"icons": {
       //"128": "pagespeed-128.png",

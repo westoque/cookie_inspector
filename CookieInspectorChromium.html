@@ -3,55 +3,105 @@
 <head>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <link rel="stylesheet" type="text/css" href="core.css" />
-  <link rel="stylesheet" type="text/css" href="datatable-core.css" />
-  <link rel="stylesheet" type="text/css" href="datatable-basic.css" />
   <script type="text/javascript" src="fetch_devtools_api.js"></script>
-  <script type="text/javascript" src="yahoo-dom-event.js"></script>
-  <script type="text/javascript" src="dragdrop-min.js"></script>
-  <script type="text/javascript" src="element-min.js"></script>
-  <script type="text/javascript" src="datasource-min.js"></script>
-  <script type="text/javascript" src="event-delegate-min.js"></script>
-  <script type="text/javascript" src="datatable-min.js"></script>
 
-  <!-- Required for YUI menus buttons -->
-  <script src="container_core-min.js"></script>
-  <script src="menu-min.js"></script>
+  <!-- Libraries -->
+  <script type="text/javascript" src="lib/jquery-1.9.1-min.js"></script>
+  <script type="text/javascript" src="lib/underscore-min.js"></script>
+  <script type="text/javascript" src="lib/backbone-min.js"></script>
+  <script type="text/javascript" src="lib/hogan-min.js"></script>
 
-  <!-- Source file -->
-  <script src="button-min.js"></script>
+  <!-- App -->
+  <script type="text/javascript" src="ci.js"></script>
+  <script type="text/javascript" src="models/cookie.js"></script>
+  <script type="text/javascript" src="collections/cookies.js"></script>
+  <script type="text/javascript" src="views/header.js"></script>
+  <script type="text/javascript" src="views/content.js"></script>
+  <script type="text/javascript" src="views/footer.js"></script>
+  <script type="text/javascript" src="views/cookie.js"></script>
+  <script type="text/javascript" src="views/resizer.js"></script>
+  <script type="text/javascript" src="views/add_new_cookie.js"></script>
 
   <title>Cookie Inspector</title>
 </head>
-<body class="yui-skin-sam">
-  <!-- Main -->
-  <div id="main"></div>
+<body>
+  <script id="header-tmpl" type="text/template">
+    <table style="width: 100%; height: 100%;">
+      <colgroup span="8">
+        <col style="width: 15%;">
+        <col style="width: 40%;">
+        <col style="width: 10%;">
+        <col style="width: 5%;">
+        <col style="width: 10%;">
+        <col style="width: 10%;">
+        <col style="width: 5%;">
+        <col style="width: 5%;">
+      </colgroup>
+      <tbody>
+        <tr>
+          <th data-col="name"><div>Name<div></th>
+          <th data-col="value"><div>Value</div></th>
+          <th data-col="domain"><div>Domain</div></th>
+          <th data-col="size"><div>Size</div></th>
+          <th data-col="path"><div>Path</div></th>
+          <th data-col="expires"><div>Expires</div></th>
+          <th data-col="httponly"><div>Http</div></th>
+          <th data-col="security"><div>Secure</div></th>
+        </tr>
+      </tbody>
+    </table>
+  </script>
 
-  <!-- Footer -->
-  <div id="footer">
-    <div id="add-cookie-button"></div>
-  </div>
+  <script id="content-tmpl" type="text/template">
+      <table style="width: 100%; height: 100%;">
+        <colgroup span="8">
+          <col style="width: 15%;">
+          <col style="width: 40%;">
+          <col style="width: 10%;">
+          <col style="width: 5%;">
+          <col style="width: 10%;">
+          <col style="width: 10%;">
+          <col style="width: 5%;">
+          <col style="width: 5%;">
+        </colgroup>
+        <tbody>
+          <tr class="filler">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+  </script>
 
-  <!-- The form to add the cookie (hidden by default) -->
-  <div id="add-cookie-form">
-    <div>
-      <label>Name</label>
-      <input type="text" />
-    </div>
-    <div>
-      <label>Host</label>
-      <input type="text" />
-    </div>
-    <div>
-      <label>Path</label>
-      <input type="text" />
-    </div>
-    <div>
-      <div id="cancel-add-cookie-button-container"></div>
-      <div id="submit-add-cookie-button-container"></div>
-    </div>
-  </div>
+  <script id="cookie-tmpl" type="text/template">
+    <td><div class="name">{{name}}</div></td>
+    <td><div class="value">{{value}}</div></td>
+    <td><div>{{domain}}</div></td>
+    <td><div>{{size}}</div></td>
+    <td><div>{{path}}</div></td>
+    <td><div>{{expires}}</div></td>
+    <td><div>{{httpOnly}}</div></td>
+    <td><div>{{security}}</div></td>
+  </script>
 
-  <script type="text/javascript" src="cookie_inspector_panel.js"></script>
+  <script id="footer-tmpl" type="text/template">
+    <div id="new-cookie">New Cookie</div>
+  </script>
+
+  <script id="add-new-cookie-tmpl" type="text/template">
+    <div id="add-new-cookie-form">
+      <div>
+        <label>Name</label>
+        <input type="text" name="name" />
+      </div>
+    </div>
+  </script>
 </body>
 </html>
 

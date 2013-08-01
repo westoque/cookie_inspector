@@ -129,43 +129,77 @@
     ],
 
     run: function() {
+      billy = Hogan.compile('Hello {{name}}');
+      console.log(billy.render({name: 'Billy'}));
       this._listenToMessagesFromBackground();
       this._createTable();
       this._sendSaveListenerMessage();
       this._sendGetCookiesMessage();
+      this._sendGetDefaultValuesForForm();
       this._initFooterControls();
     },
 
     _initFooterControls: function() {
-      var addCookieButton = new YAHOO.widget.Button({
-        id: 'pushbutton7',
-        label: 'Add',
-        container: 'add-cookie-button'
-      });
+      var newCookieButton = new YAHOO.widget.Button('add-cookie-button');
+      newCookieButton.on("click", this._onAddCookieButtonClick.bind(this));
 
-      addCookieButton.on("click", function() {
-        YAHOO.util.Dom.setStyle('add-cookie-form', 'display', 'block');
-      });
+      //var showCalButton = YAHOO.widget.Button('show-cal');
+      //showCalButton.on('click', function() {
+        //var calendar = new YAHOO.widget.Calendar('cal', {
+          //iframe: false
+        //});
+        //calendar.render();
+      //});
 
-      var cancelAddCookieButton = new YAHOO.widget.Button({
-        id: 'cancel-add-cookie-button',
-        label: 'Cancel',
-        container: 'cancel-add-cookie-button-container'
-      });
-
+      var cancelAddCookieButton = new YAHOO.widget.Button('cancel-form');
       cancelAddCookieButton.on("click", function() {
         YAHOO.util.Dom.setStyle('add-cookie-form', 'display', 'none');
       });
 
-      var submitAddCookieButton = new YAHOO.widget.Button({
-        id: 'submit-add-cookie-button',
-        label: 'submit',
-        container: 'submit-add-cookie-button-container'
-      });
-
+      var submitAddCookieButton = new YAHOO.widget.Button('submit-form');
       submitAddCookieButton.on("click", function() {
+        var tabId = chrome.devtools.inspectedWindow.tabId;
+        this.port.postMessage({
+          command: 'addCookie',
+          options: {
+            tabId: tabId,
+            details: {
+              name: document.getElementById('name').value,
+              value: 'val',
+              domain: document.getElementById('host').value,
+              path: document.getElementById('path').path
+            }
+          }
+        });
         YAHOO.util.Dom.setStyle('add-cookie-form', 'display', 'none');
-      });
+      }.bind(this));
+    },
+
+    _onAddCookieButtonClick: function() {
+      var name, host, path;
+
+      // Show the form
+      YAHOO.util.Dom.setStyle('add-cookie-form', 'display', 'block');
+
+      var a = document.createElement('a');
+      a.href = this.url;
+
+      name = document.getElementById('name');
+      name.value = 'Cookie-Name';
+
+      host = document.getElementById('host');
+      host.value = a.hostname;
+
+      path = document.getElementById('path');
+      path.value = a.pathname;
+
+      var now = new Date();
+      expires = document.getElementById('expires');
+      expires.value = '' + (now.getMonth() + 1) + '/' + now.getDay() + '/' + now.getFullYear();
+
+      // Finally, focus on the name
+      name.focus();
+      name.select();
     },
 
     _createTable: function() {
@@ -182,10 +216,18 @@
     _onPortMessageReceived: function(msg) {
       var command = msg.command;
 
+      if (command === 'setDefaultValues') {
+        this.url = msg.options.url;
+      }
+
       if (command === 'reset') {
         var length = this.dataTable.getRecordSet().getLength();
         this.dataTable.deleteRows(0,length);
         this.dataTable.addRows(msg.options.cookies);
+      }
+
+      if (command === 'addCookie') {
+        this.dataTable.addRow(msg.options.details);
       }
     },
 
@@ -205,13 +247,25 @@
       });
     },
 
+    _sendGetDefaultValuesForForm: function() {
+      var tabId = chrome.devtools.inspectedWindow.tabId;
+      this.port.postMessage({
+        command: 'getDefaultValues',
+        options: {tabId: tabId}
+      });
+    },
+
     _onEditorSaveEvent: function(oArgs) {
       var tabId = chrome.devtools.inspectedWindow.tabId;
       var data = oArgs.editor.getRecord().getData();
+      var key  = oArgs.editor.getColumn().key;
       this.port.postMessage({
         command: 'saveCookie',
         options: {
           tabId: tabId,
+          key: key,
+          oldData: oArgs.oldData,
+          newData: oArgs.newData,
           data: data
         }
       });
