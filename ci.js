@@ -54,7 +54,7 @@ var ci = {
     }
 
     if (window.DEVELOPMENT) {
-      this.cookies.reset([]);
+      this.cookies.reset(COOKIES);
     } else {
       this.cookies.fetch({reset: true});
     }
