@@ -2,10 +2,14 @@
    "background": {
       "page": "background.html"
    },
-   "content_scripts": [ {
+   "content_scripts": [{
       "js": [ "inject_cookie_inspector.js" ],
-      "matches": ["http://*/", "http://chrome-devtools-frontend.appspot.com/*/devtools.html?*", "https://chrome-devtools-frontend.appspot.com/*/devtools.html?*" ]
-   } ],
+      "matches": [
+        "http://*/",
+        "http://chrome-devtools-frontend.appspot.com/*/devtools.html?*",
+        "https://chrome-devtools-frontend.appspot.com/*/devtools.html?*"
+      ]
+   }],
    "content_security_policy": "default-src 'self'; connect-src http: https:; script-src 'self' 'unsafe-eval' https://chrome-devtools-frontend.appspot.com; img-src 'self' data:; style-src 'self' 'unsafe-inline'; frame-src 'self' about: ",
    "devtools_page": "devtools-page.html",
    "description": "Edit cookies right from the inspector tab",
@@ -17,13 +21,9 @@
       //"48": "pagespeed-48.png",
       //"64": "pagespeed-64.png"
    //},
-   //"key": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCtHX1f891iqStUrTSjgXk3mNj9ivS9qO/tIt5SKSTpLd9Hs4lF1UzAHMHFN84yCOSNfO9rEe6JKzR7LDWQNVNyLkIIw9UD01PeJga0Yu/P9BKpGzNnCoctGgPPrcdUUCy0F8kz/6GPZSp10sMoQuvip8MTpBFzp5oM7BAum+vqpwIDAQAB",
    "manifest_version": 2,
    "minimum_chrome_version": "19.0",
    "name": "Cookie Inspector",
-   //"options_page": "options.html",
    "permissions": [ "cookies", "*://*/", "tabs", "unlimitedStorage", "webNavigation", "http://*/*", "https://*/*" ],
-   //"update_url": "http://clients2.google.com/service/update2/crx",
-   "version": "0.0.1"
-   //"web_accessible_resources": [ "devtools-page.html", "pagespeed-devtools-icon.png", "PagespeedChromium.html" ]
+   "version": "1.0.0"
 }
