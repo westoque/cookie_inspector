@@ -83,15 +83,22 @@ var ci = {
     var percentage = (difference / $('#header table').width()) * 100;
 
     // Resize the column
-    var newColWidth = $('#header table col').eq(index).width() - percentage;
-    $('#header table col').eq(index).css('width', newColWidth + '%');
-    $('#content table col').eq(index).css('width', newColWidth + '%');
+    var $headerCols = $('#header table col');
+    var $contentCols = $('#content table col');
 
-    var newColWidth = $('#header table col').eq(index + 1).width() + percentage;
-    $('#header table col').eq(index + 1).css('width', newColWidth + '%');
-    $('#content table col').eq(index + 1).css('width', newColWidth + '%');
+    var prevColWidth = $headerCols.eq(index).width() - percentage;
+    var nextColWidth = $headerCols.eq(index + 1).width() + percentage;
 
-    this.trigger('resize');
+    if (prevColWidth > 3 && nextColWidth > 3) {
+      $headerCols.eq(index).css('width', prevColWidth + '%');
+      $contentCols.eq(index).css('width', prevColWidth + '%');
+
+      $headerCols.eq(index + 1).css('width', nextColWidth + '%');
+      $contentCols.eq(index + 1).css('width', nextColWidth + '%');
+
+      this.trigger('resize');
+    }
+
   }
 };
 
