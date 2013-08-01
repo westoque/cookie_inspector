@@ -1,20 +1,23 @@
-Backbone.ajax = function(request) {
-  var msg = {};
+if (!window.DEVELOPMENT) {
 
-  msg.path  = request.type + ' ' + request.url;
-  msg.tabId = chrome.devtools.inspectedWindow.tabId;
+  Backbone.ajax = function(request) {
+    var msg = {};
 
-  var onMessage = function(response) {
-    try {
-      request.success(response);
-    } catch(e) {
-      request.error(e);
-    }
+    msg.path  = request.type + ' ' + request.url;
+    msg.tabId = chrome.devtools.inspectedWindow.tabId;
+
+    var onMessage = function(response) {
+      try {
+        request.success(response);
+      } catch(e) {
+        request.error(e);
+      }
+    };
+
+    chrome.extension.sendMessage(msg, onMessage);
   };
 
-  chrome.extension.sendMessage(msg, onMessage);
-};
-
+}
 
 var ci = {
 
@@ -50,7 +53,11 @@ var ci = {
       $(document.body).append(view.render().el);
     }
 
-    this.cookies.fetch({reset: true});
+    if (window.DEVELOPMENT) {
+      this.cookies.reset([]);
+    } else {
+      this.cookies.fetch({reset: true});
+    }
   },
 
   _listenToResizerDrag: function() {
@@ -69,6 +76,7 @@ var ci = {
 
   _onResizerDrag: function(e) {
     var index = $(e.target).attr('data-index');
+    console.log('drag');
     //this.trigger('drag', e);
   }
 

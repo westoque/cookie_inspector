@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="css/core.css" />
+
+    <!-- DEV MODE -->
+    <script>
+      window.DEVELOPMENT = true;
+    </script>
+
+    <!-- Libraries -->
+    <script type="text/javascript" src="lib/jquery-1.9.1-min.js"></script>
+    <script type="text/javascript" src="lib/underscore-min.js"></script>
+    <script type="text/javascript" src="lib/backbone-min.js"></script>
+    <script type="text/javascript" src="lib/hogan-min.js"></script>
+
+    <!-- App -->
+    <script type="text/javascript" src="ci.js"></script>
+    <script type="text/javascript" src="models/cookie.js"></script>
+    <script type="text/javascript" src="collections/cookies.js"></script>
+    <script type="text/javascript" src="views/header.js"></script>
+    <script type="text/javascript" src="views/content.js"></script>
+    <script type="text/javascript" src="views/footer.js"></script>
+    <script type="text/javascript" src="views/cookie.js"></script>
+    <script type="text/javascript" src="views/resizer.js"></script>
+    <script type="text/javascript" src="views/add_new_cookie.js"></script>
+
+    <title>Development</title>
+  </head>
+  <body>
+    <script id="header-tmpl" type="text/template">
+      <table style="width: 100%; height: 100%;">
+        <colgroup span="8">
+          <col style="width: 15%;">
+          <col style="width: 40%;">
+          <col style="width: 10%;">
+          <col style="width: 5%;">
+          <col style="width: 10%;">
+          <col style="width: 10%;">
+          <col style="width: 5%;">
+          <col style="width: 5%;">
+        </colgroup>
+        <tbody>
+          <tr>
+            <th data-col="name"><div>Name<div></th>
+            <th data-col="value"><div>Value</div></th>
+            <th data-col="domain"><div>Domain</div></th>
+            <th data-col="size"><div>Size</div></th>
+            <th data-col="path"><div>Path</div></th>
+            <th data-col="expires"><div>Expires</div></th>
+            <th data-col="httponly"><div>Http</div></th>
+            <th data-col="security"><div>Secure</div></th>
+          </tr>
+        </tbody>
+      </table>
+    </script>
+
+    <script id="content-tmpl" type="text/template">
+        <table style="width: 100%; height: 100%;">
+          <colgroup span="8">
+            <col style="width: 15%;">
+            <col style="width: 40%;">
+            <col style="width: 10%;">
+            <col style="width: 5%;">
+            <col style="width: 10%;">
+            <col style="width: 10%;">
+            <col style="width: 5%;">
+            <col style="width: 5%;">
+          </colgroup>
+          <tbody>
+            <tr class="filler">
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+    </script>
+
+    <script id="cookie-tmpl" type="text/template">
+      <td><div class="name">{{name}}</div></td>
+      <td><div class="value">{{value}}</div></td>
+      <td><div>{{domain}}</div></td>
+      <td><div>{{size}}</div></td>
+      <td><div>{{path}}</div></td>
+      <td><div>{{expires}}</div></td>
+      <td><div>{{httpOnly}}</div></td>
+      <td><div>{{security}}</div></td>
+    </script>
+
+    <script id="footer-tmpl" type="text/template">
+      <div id="new-cookie">New Cookie</div>
+    </script>
+
+    <script id="add-new-cookie-tmpl" type="text/template">
+      <div id="add-new-cookie-form">
+        <div>
+          <label>Name</label>
+          <input type="text" name="name" />
+        </div>
+      </div>
+    </script>
+  </body>
+</html>
