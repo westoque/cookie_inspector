@@ -41,7 +41,7 @@
           <col style="width: 5%;">
           <col style="width: 5%;">
         </colgroup>
-        <tbody>
+        <thead>
           <tr>
             <th data-col="name"><div>Name<div></th>
             <th data-col="value"><div>Value</div></th>
@@ -52,7 +52,7 @@
             <th data-col="httponly"><div>Http</div></th>
             <th data-col="security"><div>Secure</div></th>
           </tr>
-        </tbody>
+        </thead>
       </table>
     </script>
 
@@ -84,8 +84,8 @@
     </script>
 
     <script id="cookie-tmpl" type="text/template">
-      <td><div class="name">{{name}}</div></td>
-      <td><div class="value">{{value}}</div></td>
+      <td><div>{{name}}</div></td>
+      <td><div>{{value}}</div></td>
       <td><div>{{domain}}</div></td>
       <td><div>{{size}}</div></td>
       <td><div>{{path}}</div></td>

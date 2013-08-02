@@ -98,7 +98,6 @@ var ci = {
 
       this.trigger('resize');
     }
-
   }
 };
 

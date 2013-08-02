@@ -1,8 +1,5 @@
 ci.Models.Cookie = Backbone.Model.extend({
 
-  initialize: function() {
-  },
-
   parse: function(response, options) {
     response.size = response.name.length + response.value.length;
     response.expires = (new Date(response.expirationDate * 1000)).toString();
@@ -50,5 +47,18 @@ COOKIES = [
     session: false,
     storeId: "0",
     value: "141992880.1362680496.1.1.utmcsr=t.co|utmccn=(referral)|utmcmd=referral|utmcct=/ZQwuzO6Gey"
+  },
+  {
+    id: 4,
+    domain: ".squareup.com",
+    expirationDate: 1379357120,
+    hostOnly: false,
+    httpOnly: false,
+    name: "ab_test",
+    path: "/",
+    secure: false,
+    session: false,
+    storeId: "0",
+    value: "1"
   }
 ];

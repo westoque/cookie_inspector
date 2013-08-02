@@ -27,7 +27,6 @@ table {
   top: 0;
   left: 0;
   right: 0;
-  height: 30px;
 }
 
 #header table {
@@ -42,7 +41,7 @@ table {
   vertical-align: middle;
   text-align: left;
   font-weight: bold;
-  height: 30px;
+  height: 29px;
   cursor: pointer;
   -webkit-user-select: none;
 }
@@ -70,13 +69,15 @@ table {
 #content table {
   table-layout: fixed;
   background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0)), color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, rgba(0, 0, 0, 0.05)), to(rgba(0, 0, 0, 0.05)));
-  -webkit-background-size: 1px 37px;
+  -webkit-background-size: 1px 82px;
 }
 
 #content table td {
   border-right: 1px solid rgb(179, 179, 179);
-  height: 15px;
+  border-spacing: 0;
+  height: 41px;
   vertical-align: middle;
+  padding: 0 4px;
 }
 
 #content table td div {
