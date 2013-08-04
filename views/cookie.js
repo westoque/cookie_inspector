@@ -12,7 +12,7 @@ ci.Views.Cookie = Backbone.View.extend({
   },
 
   render: function() {
-    this.$el.html(this.template().render(this.model.toViewJSON()));
+    this.$el.html(this.template().render(this.model.toJSON()));
     return this;
   }
 

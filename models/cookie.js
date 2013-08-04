@@ -1,17 +1,18 @@
 ci.Models.Cookie = Backbone.Model.extend({
 
   initialize: function(attrs) {
+    this.set('size', this.computeSize());
+    this.set('expires',(new Date(attrs.expirationDate * 1000)).toString());
+    this.listenTo(this, 'change:name', function() {
+      this.set('size', this.computeSize());
+    }, this);
+    this.listenTo(this, 'change:value', function() {
+      this.set('size', this.computeSize());
+    }, this);
   },
 
-  toJSON: function(options) {
-    return _.clone(this.attributes);
-  },
-
-  toViewJSON: function() {
-    var attrs = this.toJSON();
-    attrs.size = attrs.name.length + attrs.value.length;
-    attrs.expires = (new Date(attrs.expirationDate * 1000)).toString();
-    return attrs;
+  computeSize: function() {
+    return this.get('name').length + this.get('value').length;
   },
 
   expirationDateObject: function() {
