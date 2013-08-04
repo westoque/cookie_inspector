@@ -7,6 +7,13 @@ if (window.DEVELOPMENT) {
       cb(eval(str));
     }
   };
+
+  chrome.extension = {
+    sendMessage: function(msg, sendResponse) {
+      console.log(msg);
+      sendResponse();
+    }
+  };
 }
 
 Backbone.ajax = function(request) {
