@@ -17,12 +17,20 @@ ci.Views.Footer = Backbone.View.extend({
 
   _onAddNewCookieClick: function(e) {
     e.preventDefault();
-    this._showAddNewCookieForm();
-  },
-
-  _showAddNewCookieForm: function() {
-    var view = new ci.Views.AddNewCookie();
+    var cookie = new ci.Models.Cookie({
+      domain: 'localhost',
+      expirationDate: (new Date().getTime() / 1000),
+      hostOnly: false,
+      httpOnly: false,
+      name: '',
+      path: '/',
+      secure: false,
+      session: false,
+      value: ''
+    });
+    var view = new ci.Views.CookieForm({ model: cookie });
     $(document.body).append(view.render().el);
+    view.$('input').eq(0).focus();
   }
 
 });

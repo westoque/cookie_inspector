@@ -5,6 +5,7 @@ ci.Views.Content = Backbone.View.extend({
   initialize: function() {
     this.cookies = this.options.cookies;
     this.listenTo(this.cookies, 'reset', this._onCookiesReset.bind(this));
+    this.listenTo(this.cookies, 'add',   this._onCookiesAdd.bind(this));
     this.listenTo(this.cookies, 'sort',  this._onCookiesSort.bind(this));
   },
 
@@ -15,6 +16,10 @@ ci.Views.Content = Backbone.View.extend({
   render: function() {
     this.$el.html(this.template().render());
     return this;
+  },
+
+  _onCookiesAdd: function(cookie) {
+    this._addOne(cookie);
   },
 
   _onCookiesReset: function(cookies) {

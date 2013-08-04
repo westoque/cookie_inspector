@@ -20,7 +20,7 @@
   <script type="text/javascript" src="views/footer.js"></script>
   <script type="text/javascript" src="views/cookie.js"></script>
   <script type="text/javascript" src="views/resizer.js"></script>
-  <script type="text/javascript" src="views/add_new_cookie.js"></script>
+  <script type="text/javascript" src="views/cookie_form.js"></script>
 
   <title>Cookie Inspector</title>
 </head>
@@ -94,13 +94,58 @@
     <div id="new-cookie">New Cookie</div>
   </script>
 
-  <script id="add-new-cookie-tmpl" type="text/template">
-    <div id="add-new-cookie-form">
+  <script id="cookie-form-tmpl" type="text/template">
+    <form id="cookie-form">
+      <div id="cookie-form-view-header">New Cookie</div>
+
       <div>
         <label>Name</label>
-        <input type="text" name="name" />
+        <input type="text" name="name" value="{{name}}" />
       </div>
-    </div>
+
+      <div>
+        <label>Value</label>
+        <textarea>{{value}}</textarea>
+      </div>
+
+      <div>
+        <label>Domain</label>
+        <input type="text" name="domain" value="{{domain}}" />
+      </div>
+
+      <div>
+        <label>Path</label>
+        <input type="text" name="path" value="{{path}}" />
+      </div>
+
+      <div>
+        <label>Expires</label>
+        <input type="datetime-local" name="expires" value="{{expires}}" />
+      </div>
+
+      <div>
+        <label>Session</label>
+        <input type="checkbox" name="session" />
+      </div>
+
+      <div>
+        <label>Host Only</label>
+        <input type="checkbox" name="hostOnly" />
+      </div>
+
+      <div>
+        <label>HTTP Only</label>
+        <input type="checkbox" name="httpOnly" />
+      </div>
+
+      <div>
+        <label>Secure</label>
+        <input type="checkbox" name="secure" />
+      </div>
+
+      <button id="submit" type="submit">Submit</button>
+      <button id="cancel">Cancel</button>
+    </form>
   </script>
 </body>
 </html>
