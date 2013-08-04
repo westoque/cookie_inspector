@@ -95,14 +95,13 @@ COOKIES = [
   {
     id: 4,
     domain: ".squareup.com",
-    expirationDate: 1379357120,
     hostOnly: false,
     httpOnly: false,
-    name: "ab_test",
+    name: "session",
     path: "/",
     secure: false,
-    session: false,
+    session: true,
     storeId: "0",
-    value: "1"
+    value: "some_session_value"
   }
 ];
