@@ -1,23 +1,31 @@
-if (!window.DEVELOPMENT) {
+if (window.DEVELOPMENT) {
+  chrome = {};
+  chrome.devtools = {};
+  chrome.devtools.inspectedWindow = {
+    tabId: 1,
+    eval: function(str, cb) {
+      cb(eval(str));
+    }
+  };
+}
 
-  Backbone.ajax = function(request) {
-    var msg = {};
+Backbone.ajax = function(request) {
+  var msg = {};
 
-    msg.path  = request.type + ' ' + request.url;
-    msg.tabId = chrome.devtools.inspectedWindow.tabId;
+  msg.path  = request.type + ' ' + request.url;
+  msg.tabId = chrome.devtools.inspectedWindow.tabId;
+  msg.data  = request.data;
 
-    var onMessage = function(response) {
-      try {
-        request.success(response);
-      } catch(e) {
-        request.error(e);
-      }
-    };
-
-    chrome.extension.sendMessage(msg, onMessage);
+  var onMessage = function(response) {
+    try {
+      request.success(response);
+    } catch(e) {
+      request.error(e);
+    }
   };
 
-}
+  chrome.extension.sendMessage(msg, onMessage);
+};
 
 var ci = {
 
@@ -30,34 +38,40 @@ var ci = {
   Views: {},
 
   run: function() {
-    this._listenToWindowResize();
-    this._listenToResizerDrag();
+    var self = this;
 
-    this.cookies = new ci.Collections.Cookies();
+    chrome.devtools.inspectedWindow.eval('window.document.domain', function(result) {
+      self.url = result;
 
-    var headerView = new ci.Views.Header({cookies: this.cookies});
-    $(document.body).append(headerView.render().el);
+      self._listenToWindowResize();
+      self._listenToResizerDrag();
 
-    var contentView = new ci.Views.Content({cookies: this.cookies});
-    $(document.body).append(contentView.render().el);
+      self.cookies = new ci.Collections.Cookies();
 
-    var footerView = new ci.Views.Footer();
-    $(document.body).append(footerView.render().el);
+      var headerView = new ci.Views.Header({cookies: self.cookies});
+      $(document.body).append(headerView.render().el);
 
-    // Add the resizers
-    var $resizers = $('#header table th');
-    for (var i = 1; i < $resizers.length; i += 1) {
-      var view = new ci.Views.Resizer({$column: $resizers.eq(i)});
-      view.$el.attr('data-index', i - 1);
-      this.resizers[i] = view;
-      $(document.body).append(view.render().el);
-    }
+      var contentView = new ci.Views.Content({cookies: self.cookies});
+      $(document.body).append(contentView.render().el);
 
-    if (window.DEVELOPMENT) {
-      this.cookies.reset(COOKIES);
-    } else {
-      this.cookies.fetch({reset: true});
-    }
+      var footerView = new ci.Views.Footer();
+      $(document.body).append(footerView.render().el);
+
+      // Add the resizers
+      var $resizers = $('#header table th');
+      for (var i = 1; i < $resizers.length; i += 1) {
+        var view = new ci.Views.Resizer({$column: $resizers.eq(i)});
+        view.$el.attr('data-index', i - 1);
+        self.resizers[i] = view;
+        $(document.body).append(view.render().el);
+      }
+
+      if (window.DEVELOPMENT) {
+        self.cookies.reset(COOKIES);
+      } else {
+        self.cookies.fetch({reset: true});
+      }
+    });
   },
 
   _listenToResizerDrag: function() {

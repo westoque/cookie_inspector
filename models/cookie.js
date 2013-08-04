@@ -1,5 +1,7 @@
 ci.Models.Cookie = Backbone.Model.extend({
 
+  url: '/cookies',
+
   initialize: function(attrs) {
     this.set('size', this.computeSize());
     this.set('expires',(new Date(attrs.expirationDate * 1000)).toString());

@@ -18,15 +18,15 @@ ci.Views.Footer = Backbone.View.extend({
   _onAddNewCookieClick: function(e) {
     e.preventDefault();
     var cookie = new ci.Models.Cookie({
-      domain: 'localhost',
+      domain: ci.url,
       expirationDate: (new Date().getTime() / 1000),
       hostOnly: false,
       httpOnly: false,
-      name: '',
+      name: 'Cookie',
       path: '/',
       secure: false,
       session: false,
-      value: ''
+      value: 'Value'
     });
     var view = new ci.Views.CookieForm({ model: cookie });
     $(document.body).append(view.render().el);

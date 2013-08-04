@@ -29,6 +29,7 @@ ci.Views.CookieForm = Backbone.View.extend({
     event.preventDefault();
     var attrs = this._getFormValues();
     this.model.set(attrs);
+    this.model.save();
     ci.cookies.add(this.model);
     this.remove();
   },

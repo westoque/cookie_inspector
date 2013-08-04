@@ -9,6 +9,28 @@
           render(cookies);
         });
       });
+    },
+
+    'POST /cookies': function(params, sendResponse) {
+      var data = JSON.parse(params.data);
+
+      chrome.tabs.get(params.tabId, function(tab) {
+        var details = {
+          url: tab.url,
+          name: data.name,
+          value: data.value,
+          path: data.path,
+          secure: data.secure,
+          httpOnly: data.httpOnly,
+          expirationDate: data.expirationDate
+        };
+
+        console.log(details);
+
+        chrome.cookies.set(details, function(cookie) {
+          sendResponse(cookie);
+        });
+      });
     }
 
   };
@@ -20,7 +42,9 @@
     },
 
     _onMessageReceived: function(msg, sender, sendResponse) {
-      console.log('Started ', msg.path);
+      if (!routeMap[msg.path]) {
+        throw new Error('Route ' + msg.path + ' does not exist');
+      }
       routeMap[msg.path](msg, sendResponse);
       return true;
     }
