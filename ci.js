@@ -1,4 +1,18 @@
 if (window.DEVELOPMENT) {
+  function Port() {};
+  Port.prototype = {
+    onMessage: {
+      addListener: function() {
+      }
+    },
+
+    postMessage: function() {
+    },
+
+    addListener: function() {
+    }
+  };
+
   chrome = {};
   chrome.devtools = {};
   chrome.devtools.inspectedWindow = {
@@ -12,6 +26,12 @@ if (window.DEVELOPMENT) {
     sendMessage: function(msg, sendResponse) {
       console.log(msg);
       sendResponse();
+    }
+  };
+
+  chrome.runtime = { 
+    connect: function() {
+      return new Port();
     }
   };
 }
@@ -36,6 +56,8 @@ Backbone.ajax = function(request) {
 
 var ci = {
 
+  port: null,
+
   resizers: {},
 
   Models: {},
@@ -45,40 +67,28 @@ var ci = {
   Views: {},
 
   run: function() {
-    var self = this;
+    this._listenToWindowResize();
+    this._listenToResizerDrag();
 
-    chrome.devtools.inspectedWindow.eval('window.document.domain', function(result) {
-      self.url = result;
+    this.cookies = new ci.Collections.Cookies();
 
-      self._listenToWindowResize();
-      self._listenToResizerDrag();
+    var headerView = new ci.Views.Header({cookies: this.cookies});
+    $(document.body).append(headerView.render().el);
 
-      self.cookies = new ci.Collections.Cookies();
+    var contentView = new ci.Views.Content({cookies: this.cookies});
+    $(document.body).append(contentView.render().el);
 
-      var headerView = new ci.Views.Header({cookies: self.cookies});
-      $(document.body).append(headerView.render().el);
+    var footerView = new ci.Views.Footer();
+    $(document.body).append(footerView.render().el);
 
-      var contentView = new ci.Views.Content({cookies: self.cookies});
-      $(document.body).append(contentView.render().el);
-
-      var footerView = new ci.Views.Footer();
-      $(document.body).append(footerView.render().el);
-
-      // Add the resizers
-      var $resizers = $('#header table th');
-      for (var i = 1; i < $resizers.length; i += 1) {
-        var view = new ci.Views.Resizer({$column: $resizers.eq(i)});
-        view.$el.attr('data-index', i - 1);
-        self.resizers[i] = view;
-        $(document.body).append(view.render().el);
-      }
-
-      if (window.DEVELOPMENT) {
-        self.cookies.reset(COOKIES);
-      } else {
-        self.cookies.fetch({reset: true});
-      }
-    });
+    // Add the resizers
+    var $resizers = $('#header table th');
+    for (var i = 1; i < $resizers.length; i += 1) {
+      var view = new ci.Views.Resizer({$column: $resizers.eq(i)});
+      view.$el.attr('data-index', i - 1);
+      this.resizers[i] = view;
+      $(document.body).append(view.render().el);
+    }
   },
 
   _listenToResizerDrag: function() {
@@ -128,7 +138,20 @@ _.extend(ci, Backbone.Events);
 
 // Main entry point
 $(document).ready(function() {
-
   ci.run();
+
+  var port = chrome.runtime.connect();
+
+  port.onMessage.addListener(function(msg) {
+    if (msg.command === 'reset') {
+      ci.cookies.reset(msg.options.cookies);
+    }
+  });
+
+  var tabId = chrome.devtools.inspectedWindow.tabId;
+  port.postMessage({
+    command: 'saveListener',
+    options: { tabId: tabId }
+  });
 
 });

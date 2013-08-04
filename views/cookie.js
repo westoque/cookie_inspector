@@ -4,6 +4,10 @@ ci.Views.Cookie = Backbone.View.extend({
 
   tagName: 'tr',
 
+  initialize: function() {
+    this.listenTo(this.model, 'destroy', this.remove);
+  },
+
   events: {
   },
 

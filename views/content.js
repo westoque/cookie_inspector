@@ -23,6 +23,7 @@ ci.Views.Content = Backbone.View.extend({
   },
 
   _onCookiesReset: function(cookies) {
+    this.$('.cookie-row').remove();
     cookies.each(this._addOne.bind(this));
   },
 
