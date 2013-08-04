@@ -85,9 +85,27 @@
     <td><div>{{domain}}</div></td>
     <td><div>{{size}}</div></td>
     <td><div>{{path}}</div></td>
-    <td><div>{{expires}}</div></td>
-    <td><div>{{httpOnly}}</div></td>
-    <td><div>{{security}}</div></td>
+    <td>
+      <div>
+        {{#session}}
+          Session
+        {{/session}}
+
+        {{^session}}
+          {{expires}}
+        {{/session}}
+      </div>
+    </td>
+    <td>
+      {{#httpOnly}}
+        <div>true</div>
+      {{/httpOnly}}
+    </td>
+    <td>
+      {{#secure}}
+        <div>true</div>
+      {{/secure}}
+    </td>
   </script>
 
   <script id="footer-tmpl" type="text/template">

@@ -100,8 +100,16 @@
           {{/session}}
         </div>
       </td>
-      <td><div>{{httpOnly}}</div></td>
-      <td><div>{{secure}}</div></td>
+      <td>
+        {{#httpOnly}}
+          <div>true</div>
+        {{/httpOnly}}
+      </td>
+      <td>
+        {{#secure}}
+          <div>true</div>
+        {{/secure}}
+      </td>
     </script>
 
     <script id="footer-tmpl" type="text/template">
