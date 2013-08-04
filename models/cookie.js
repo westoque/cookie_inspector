@@ -4,7 +4,7 @@ ci.Models.Cookie = Backbone.Model.extend({
 
   initialize: function(attrs) {
     this.set('size', this.computeSize());
-    this.set('expires',(new Date(attrs.expirationDate * 1000)).toString());
+    this.set('expires', this.computeExpires());
     this.listenTo(this, 'change:name', function() {
       this.set('size', this.computeSize());
     }, this);
@@ -15,6 +15,16 @@ ci.Models.Cookie = Backbone.Model.extend({
 
   computeSize: function() {
     return this.get('name').length + this.get('value').length;
+  },
+
+  computeExpires: function() {
+    var expirationDate = this.get('expirationDate');
+
+    if (expirationDate) {
+      return (new Date(expirationDate * 1000)).toString()
+    } else {
+      return null;
+    }
   },
 
   expirationDateObject: function() {
