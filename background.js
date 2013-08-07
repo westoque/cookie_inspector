@@ -39,12 +39,14 @@
     },
 
     _onDOMContentLoaded: function(details) {
+      if (details.frameId !== 0) { return; }
+
       var tabId = details.tabId;
       var port = this.listeners[tabId];
       if (port) {
         chrome.tabs.get(tabId, function(tab) {
           chrome.cookies.getAll({ url: tab.url }, function(cookies) {
-            port.postMessage({ command: 'reset', options: { cookies: cookies } });
+            port.postMessage({ command: 'cookies:read', data: { cookies: cookies } });
           });
         });
       }
@@ -97,7 +99,7 @@
       var tabId = details.tabId;
       var port = this.listeners[tabId];
       if (port) {
-        port.postMessage({ command: 'reset', options: { cookies: [] } });
+        port.postMessage({ command: 'cookies:read', data: { cookies: [] } });
       }
     }
 
