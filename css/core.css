@@ -40,7 +40,7 @@ table {
   border-right: 1px solid rgb(179, 179, 179);
   vertical-align: middle;
   text-align: left;
-  font-weight: bold;
+  font-weight: normal;
   height: 22px;
   padding: 0 4px;
   cursor: pointer;
@@ -91,8 +91,16 @@ table {
   text-decoration: underline;
 }
 
+#content table td div.size {
+  text-align: right;
+}
+
 #content table td div.green {
   color: green;
+}
+
+#content table td div.link {
+  color: blue;
 }
 
 #content table tr.filler {
