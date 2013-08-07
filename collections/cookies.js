@@ -1,6 +1,10 @@
 ci.Collections.Cookies = Backbone.Collection.extend({
 
-  url: '/cookies',
+  initialize: function() {
+    socket.on('cookies:read', this._onCookiesRead.bind(this));
+  },
+
+  url: 'cookies',
 
   model: ci.Models.Cookie,
     
@@ -32,6 +36,10 @@ ci.Collections.Cookies = Backbone.Collection.extend({
           return val;
       }
       this.sort();
+  },
+
+  _onCookiesRead: function(data) {
+    this.reset(data.cookies);
   }
 
 });

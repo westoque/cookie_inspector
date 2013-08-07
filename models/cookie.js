@@ -1,6 +1,6 @@
 ci.Models.Cookie = Backbone.Model.extend({
 
-  url: '/cookies',
+  url: 'cookies',
 
   initialize: function(attrs) {
     this.set('size', this.computeSize());

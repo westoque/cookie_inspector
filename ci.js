@@ -24,7 +24,6 @@ if (window.DEVELOPMENT) {
 
   chrome.extension = {
     sendMessage: function(msg, sendResponse) {
-      console.log(msg);
       sendResponse();
     }
   };
@@ -36,27 +35,19 @@ if (window.DEVELOPMENT) {
   };
 }
 
-Backbone.ajax = function(request) {
-  var msg = {};
+Backbone.sync = function(method, model, options) {
+  var params = {};
 
-  msg.path  = request.type + ' ' + request.url;
-  msg.tabId = chrome.devtools.inspectedWindow.tabId;
-  msg.data  = request.data;
+  params.command = model.url + ':' + method;
 
-  var onMessage = function(response) {
-    try {
-      request.success(response);
-    } catch(e) {
-      request.error(e);
-    }
-  };
+  if (options.data == null && model && (method === 'create' || method === 'update' || method === 'patch')) {
+    params.data = JSON.stringify(options.attrs || model.toJSON(options));
+  }
 
-  chrome.extension.sendMessage(msg, onMessage);
+  socket.postMessage(params);
 };
 
 var ci = {
-
-  port: null,
 
   resizers: {},
 
@@ -89,6 +80,8 @@ var ci = {
       this.resizers[i] = view;
       $(document.body).append(view.render().el);
     }
+
+    this.cookies.fetch();
   },
 
   _listenToResizerDrag: function() {
@@ -139,19 +132,4 @@ _.extend(ci, Backbone.Events);
 // Main entry point
 $(document).ready(function() {
   ci.run();
-
-  var port = chrome.runtime.connect();
-
-  port.onMessage.addListener(function(msg) {
-    if (msg.command === 'reset') {
-      ci.cookies.reset(msg.options.cookies);
-    }
-  });
-
-  var tabId = chrome.devtools.inspectedWindow.tabId;
-  port.postMessage({
-    command: 'saveListener',
-    options: { tabId: tabId }
-  });
-
 });

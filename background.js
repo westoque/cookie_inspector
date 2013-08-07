@@ -1,16 +1,8 @@
 (function() {
 
-  var routeMap = {
+  var RouteMap = {
 
-    'GET /cookies': function(params, render) {
-      chrome.tabs.get(params.tabId, function(tab) {
-        chrome.cookies.getAll({url: tab.url}, function(cookies) {
-          render(cookies);
-        });
-      });
-    },
-
-    'POST /cookies': function(params, sendResponse) {
+    'POST /cookies': function(params, res) {
       var data = JSON.parse(params.data);
 
       chrome.tabs.get(params.tabId, function(tab) {
@@ -25,7 +17,7 @@
         };
 
         chrome.cookies.set(details, function(cookie) {
-          sendResponse(cookie);
+          res(cookie);
         });
       });
     }
@@ -73,8 +65,10 @@
     },
 
     _onPortMessageReceived: function(msg, port) {
+      console.log('MSG: ', msg);
+
+      var tabId   = msg.tabId;
       var command = msg.command;
-      var tabId   = msg.options.tabId;
 
       if (command === 'saveListener') {
         this.listeners[tabId] = port;
@@ -82,10 +76,12 @@
         port.onDisconnect.addListener(function() {
           delete this.listeners[tabId];
         }.bind(this));
+      }
 
+      if (command === 'cookies:read') {
         chrome.tabs.get(tabId, function(tab) {
           chrome.cookies.getAll({ url: tab.url }, function(cookies) {
-            port.postMessage({ command: 'reset', options: { cookies: cookies } });
+            port.postMessage({ command: command, data: { cookies: cookies } });
           });
         });
       }
