@@ -1,29 +1,5 @@
 (function() {
 
-  var RouteMap = {
-
-    'POST /cookies': function(params, res) {
-      var data = JSON.parse(params.data);
-
-      chrome.tabs.get(params.tabId, function(tab) {
-        var details = {
-          url: tab.url,
-          name: data.name,
-          value: data.value,
-          path: data.path,
-          secure: data.secure,
-          httpOnly: data.httpOnly,
-          expirationDate: data.expirationDate
-        };
-
-        chrome.cookies.set(details, function(cookie) {
-          res(cookie);
-        });
-      });
-    }
-
-  };
-
   var Background = {
 
     listeners: {},
@@ -87,6 +63,27 @@
           });
         });
       }
+
+      if (command === 'cookies:create') {
+        var data = msg.data;
+
+        chrome.tabs.get(tabId, function(tab) {
+          var details = {
+            url: tab.url,
+            name: data.name,
+            value: data.value,
+            domain: data.domain,
+            path: data.path,
+            secure: data.secure,
+            httpOnly: data.httpOnly,
+            expirationDate: data.expirationDate
+          };
+
+          chrome.cookies.set(details, function(cookie) {
+            port.postMessage({ command: command, data: cookie })
+          });
+        });
+      }
     },
 
     _listenForNavigate: function() {
@@ -99,7 +96,7 @@
       var tabId = details.tabId;
       var port = this.listeners[tabId];
       if (port) {
-        port.postMessage({ command: 'cookies:read', data: { cookies: [] } });
+        port.postMessage({ command: 'navigate' });
       }
     }
 

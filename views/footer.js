@@ -18,7 +18,7 @@ ci.Views.Footer = Backbone.View.extend({
   _onAddNewCookieClick: function(e) {
     e.preventDefault();
     var cookie = new ci.Models.Cookie({
-      domain: ci.url,
+      domain: window.inspectedWindowDomain,
       expirationDate: (new Date().getTime() / 1000),
       hostOnly: false,
       httpOnly: false,

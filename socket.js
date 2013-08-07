@@ -1,3 +1,8 @@
+// TODO: Move this somewhere.
+chrome.devtools.inspectedWindow.eval('window.document.domain', function(result) {
+  window.inspectedWindowDomain = result;
+});
+
 window.socket = {
   tabId: chrome.devtools.inspectedWindow.tabId,
 

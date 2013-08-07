@@ -41,7 +41,7 @@ Backbone.sync = function(method, model, options) {
   params.command = model.url + ':' + method;
 
   if (options.data == null && model && (method === 'create' || method === 'update' || method === 'patch')) {
-    params.data = JSON.stringify(options.attrs || model.toJSON(options));
+    params.data = options.attrs || model.toJSON(options);
   }
 
   socket.postMessage(params);

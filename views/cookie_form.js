@@ -2,6 +2,10 @@ ci.Views.CookieForm = Backbone.View.extend({
 
   id: 'cookie-form-view',
 
+  initialize: function() {
+    socket.on('navigate', this._onNavigate.bind(this));
+  },
+
   events: {
     'click #cancel'       : '_onCancelClick',
     'submit #cookie-form' : '_onFormSubmit'
@@ -25,12 +29,15 @@ ci.Views.CookieForm = Backbone.View.extend({
     return this;
   },
 
+  _onNavigate: function() {
+    this.remove();
+  },
+
   _onFormSubmit: function(event) {
     event.preventDefault();
     var attrs = this._getFormValues();
     this.model.set(attrs);
     this.model.save();
-    ci.cookies.add(this.model);
     this.remove();
   },
 
