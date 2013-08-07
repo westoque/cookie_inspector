@@ -99,6 +99,10 @@ table {
   display: table-row !important;
 }
 
+#content table tr.cookie-row:hover {
+  background: #E3E3E3;
+}
+
 #content table tr.filler td {
   height: 100%;
 }
