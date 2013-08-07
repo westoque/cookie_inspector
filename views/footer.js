@@ -17,20 +17,25 @@ ci.Views.Footer = Backbone.View.extend({
 
   _onAddNewCookieClick: function(e) {
     e.preventDefault();
-    var cookie = new ci.Models.Cookie({
-      domain: window.inspectedWindowDomain,
-      expirationDate: (new Date().getTime() / 1000),
-      hostOnly: false,
-      httpOnly: false,
-      name: 'Cookie',
-      path: '/',
-      secure: false,
-      session: false,
-      value: 'Value'
+
+    // TODO: Move this somewhere.
+    chrome.devtools.inspectedWindow.eval('window.document.domain', function(domain) {
+      var cookie = new ci.Models.Cookie({
+        domain: domain,
+        expirationDate: (new Date().getTime() / 1000),
+        hostOnly: false,
+        httpOnly: false,
+        name: 'Cookie',
+        path: '/',
+        secure: false,
+        session: false,
+        value: 'Value'
+      });
+
+      var view = new ci.Views.CookieForm({ model: cookie });
+      $(document.body).append(view.render().el);
+      view.$('input').eq(0).focus();
     });
-    var view = new ci.Views.CookieForm({ model: cookie });
-    $(document.body).append(view.render().el);
-    view.$('input').eq(0).focus();
   }
 
 });
