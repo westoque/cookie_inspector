@@ -45,7 +45,7 @@
           <th data-col="domain"><div>Domain</div></th>
           <th data-col="size"><div>Size</div></th>
           <th data-col="path"><div>Path</div></th>
-          <th data-col="expires"><div>Expires</div></th>
+          <th data-col="expires"><div>Expires (GMT)</div></th>
           <th data-col="httponly"><div>Http</div></th>
           <th data-col="security"><div>Secure</div></th>
         </tr>
@@ -83,34 +83,32 @@
   <script id="cookie-tmpl" type="text/template">
     <td><div>{{name}}</div></td>
     <td><div>{{value}}</div></td>
-    <td><div>{{domain}}</div></td>
+    <td><div class="domain">{{domain}}</div></td>
     <td><div>{{size}}</div></td>
     <td><div>{{path}}</div></td>
     <td>
-      <div>
-        {{#session}}
-          Session
-        {{/session}}
+      {{#session}}
+        <div class="green">Session</div>
+      {{/session}}
 
-        {{^session}}
-          {{expires}}
-        {{/session}}
-      </div>
+      {{^session}}
+        <div>{{expires}}</div>
+      {{/session}}
     </td>
     <td>
       {{#httpOnly}}
-        <div>true</div>
+        <div class="green">True</div>
       {{/httpOnly}}
     </td>
     <td>
       {{#secure}}
-        <div>true</div>
+        <div class="green">True</div>
       {{/secure}}
     </td>
   </script>
 
   <script id="footer-tmpl" type="text/template">
-    <div id="new-cookie">New Cookie</div>
+    <div id="new-cookie">Add New Cookie</div>
   </script>
 
   <script id="cookie-form-tmpl" type="text/template">
