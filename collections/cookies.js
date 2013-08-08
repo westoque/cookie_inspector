@@ -45,7 +45,7 @@ ci.Collections.Cookies = Backbone.Collection.extend({
   },
 
   _onCookiesCreate: function(cookie) {
-    this.add(cookie);
+    this.push(cookie);
   },
 
   _onNavigate: function() {
