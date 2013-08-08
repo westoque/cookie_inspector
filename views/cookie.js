@@ -23,6 +23,7 @@ ci.Views.Cookie = Backbone.View.extend({
 
   _onContextMenu: function(event) {
     var view = new ci.Views.ContextMenu({
+      model: this.model,
       x: event.clientX,
       y: event.clientY
     });

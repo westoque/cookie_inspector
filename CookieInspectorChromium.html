@@ -143,22 +143,42 @@
 
       <div>
         <label>Session</label>
-        <input type="checkbox" name="session" />
+        {{#session}}
+          <input type="checkbox" name="session" checked="checked" />
+        {{/session}}
+        {{^session}}
+          <input type="checkbox" name="session" />
+        {{/session}}
       </div>
 
       <div>
         <label>Host Only</label>
-        <input type="checkbox" name="hostOnly" />
+        {{#hostOnly}}
+          <input type="checkbox" name="hostOnly" checked="checked" />
+        {{/hostOnly}}
+        {{^hostOnly}}
+          <input type="checkbox" name="hostOnly" />
+        {{/hostOnly}}
       </div>
 
       <div>
         <label>HTTP Only</label>
-        <input type="checkbox" name="httpOnly" />
+        {{#httpOnly}}
+          <input type="checkbox" name="httpOnly" checked="checked" />
+        {{/httpOnly}}
+        {{^httpOnly}}
+          <input type="checkbox" name="httpOnly" />
+        {{/httpOnly}}
       </div>
 
       <div>
         <label>Secure</label>
-        <input type="checkbox" name="secure" />
+        {{#secure}}
+          <input type="checkbox" name="secure" checked="checked" />
+        {{/secure}}
+        {{^secure}}
+          <input type="checkbox" name="secure" />
+        {{/secure}}
       </div>
 
       <button id="submit" type="submit">Submit</button>
@@ -167,8 +187,9 @@
   </script>
 
   <script id="context-menu-tmpl" type="text/template">
-    <div class="context-menu-item">Add New Cookie</div>
-    <div class="context-menu-item">Edit Cookie</div>
+    <div id="add-new-cookie" class="context-menu-item">Add New Cookie</div>
+    <div class="context-menu-item-separator"></div>
+    <div id="edit-cookie" class="context-menu-item">Edit Cookie</div>
     <div class="context-menu-item">Remove Cookie</div>
     <div class="context-menu-item-separator"></div>
     <div class="context-menu-item">Remove All Cookies</div>
