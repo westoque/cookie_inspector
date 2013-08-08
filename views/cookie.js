@@ -4,11 +4,12 @@ ci.Views.Cookie = Backbone.View.extend({
 
   tagName: 'tr',
 
-  initialize: function() {
-    this.listenTo(this.model, 'destroy', this.remove);
+  events: {
+    'contextmenu' : '_onContextMenu'
   },
 
-  events: {
+  initialize: function() {
+    this.listenTo(this.model, 'destroy', this.remove);
   },
 
   template: function() {
@@ -18,6 +19,17 @@ ci.Views.Cookie = Backbone.View.extend({
   render: function() {
     this.$el.html(this.template().render(this.model.toJSON()));
     return this;
+  },
+
+  _onContextMenu: function(event) {
+    var view = new ci.Views.ContextMenu({
+      x: event.clientX,
+      y: event.clientY
+    });
+    $(document.body).append(view.render().el);
+    view.$el.focus();
+    event.stopPropagation();
+    event.preventDefault();
   }
 
 });

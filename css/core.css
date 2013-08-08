@@ -179,3 +179,43 @@ table {
 #new-cookie:hover {
   text-decoration: underline;
 }
+
+#context-menu-view {
+  position: absolute;
+  z-index: 99;
+  font-family: 'Lucida Grande', 'Helvetica', 'sans-serif';
+  border: 1px solid rgba(196, 196, 196, 0.9);
+  border-top: 1px solid rgba(196, 196, 196, 0.5);
+  border-bottom: 1px solid rgba(150, 150, 150, 0.9);
+  padding: 4px 0 4px 0;
+  border-radius: 4px;
+  background-color: white;
+  -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
+}
+
+.context-menu-item {
+  cursor: default;
+  line-height: 13px;
+  font-size: 14px;
+  border-top: 1px solid transparent;
+  border-bottom: 1px solid transparent;
+  padding: 1px 15px 3px 15px;
+  margin: 0 0 0 0;
+  white-space: nowrap;
+}
+
+.context-menu-item:hover {
+  border-top: 1px solid rgb(56, 121, 217);
+  border-bottom: 1px solid rgb(56, 121, 217);
+  background-color: rgb(56, 121, 217);
+  color: white;
+}
+
+.context-menu-item-separator {
+  margin: 5px 1px 6px 1px;
+  border-bottom: 1px solid rgb(227, 227, 227);
+}
+
+:focus {
+  outline: none;
+}

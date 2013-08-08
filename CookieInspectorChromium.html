@@ -22,6 +22,7 @@
   <script type="text/javascript" src="views/cookie.js"></script>
   <script type="text/javascript" src="views/resizer.js"></script>
   <script type="text/javascript" src="views/cookie_form.js"></script>
+  <script type="text/javascript" src="views/context_menu.js"></script>
 
   <title>Cookie Inspector</title>
 </head>
@@ -163,6 +164,15 @@
       <button id="submit" type="submit">Submit</button>
       <button id="cancel">Cancel</button>
     </form>
+  </script>
+
+  <script id="context-menu-tmpl" type="text/template">
+    <div class="context-menu-item">Add New Cookie</div>
+    <div class="context-menu-item">Edit Cookie</div>
+    <div class="context-menu-item">Delete Cookie</div>
+    <div class="context-menu-item-separator"></div>
+    <div class="context-menu-item">Import Cookies</div>
+    <div class="context-menu-item">Export Cookies</div>
   </script>
 </body>
 </html>
