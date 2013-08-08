@@ -84,6 +84,21 @@
           });
         });
       }
+
+      if (command === 'cookies:delete') {
+        var data = msg.data;
+
+        chrome.tabs.get(tabId, function(tab) {
+          var details = {
+            url: tab.url,
+            name: data.name
+          };
+
+          chrome.cookies.remove(details, function(cookie) {
+            port.postMessage({ command: command, data: cookie })
+          });
+        });
+      }
     },
 
     _listenForNavigate: function() {
