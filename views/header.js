@@ -26,6 +26,10 @@ ci.Views.Header = Backbone.View.extend({
   _onHeaderClick: function(e) {
     e.preventDefault();
     var $target = $(e.currentTarget);
+    var $ths = this.$('th');
+    $ths.removeClass('desc');
+    $ths.removeClass('asc');
+
     var column = $target.attr('data-col');
     var sort = $target.attr('data-sort-by');
     switch (sort) {
@@ -38,6 +42,7 @@ ci.Views.Header = Backbone.View.extend({
       default:
           sort = 'asc';
     }
+    $target.addClass(sort);
     $target.attr('data-sort-by', sort);
     this.cookies['sortByAttr' + toCamelCase(sort)](column);
   }

@@ -47,6 +47,18 @@ table {
   -webkit-user-select: none;
 }
 
+#header table th.desc div {
+  background-image: url(/images/tree_up.png);
+  background-repeat: no-repeat;
+  background-position: 100%;
+}
+
+#header table th.asc div {
+  background-image: url(/images/tree_down.png);
+  background-repeat: no-repeat;
+  background-position: 100%;
+}
+
 #header table th:active {
   background: #FFF;
 }
