@@ -36,8 +36,7 @@ ci.Views.CookieForm = Backbone.View.extend({
   _onFormSubmit: function(event) {
     event.preventDefault();
     var attrs = this._getFormValues();
-    this.model.set(attrs);
-    this.model.save();
+    this.model.save(attrs, { wait: true });
     this.remove();
   },
 

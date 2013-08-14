@@ -52,6 +52,8 @@ ci.Collections.Cookies = Backbone.Collection.extend({
   },
 
   _onCookiesCreate: function(cookie) {
+    this.ctr = this.ctr + 1;
+    cookie.id = this.ctr;
     this.push(cookie);
   },
 
