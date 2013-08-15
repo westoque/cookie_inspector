@@ -11,7 +11,7 @@ ci.Collections.Cookies = Backbone.Collection.extend({
   url: 'cookies',
 
   model: ci.Models.Cookie,
-    
+
   sortByAttrDesc: function(attr) {
       var val;
       this.comparator = function(a, b) {
@@ -24,9 +24,9 @@ ci.Collections.Cookies = Backbone.Collection.extend({
           }
           return val;
       }
-      this.sort();      
+      this.sort();
   },
-    
+
   sortByAttrAsc: function(attr) {
       var val;
       this.comparator = function(a, b) {
