@@ -158,7 +158,7 @@ table {
   right: 0;
   background: #FFF;
   z-index: 12;
-  width: 300px;
+  width: 500px;
   border-left: 1px solid rgb(64%, 64%, 64%);
   background: rgb(232, 232, 232);
   box-shadow: -1px 0 3px rgba(0,0,0,0.08);
@@ -172,6 +172,10 @@ table {
   padding: 10px 0px 10px 10px;
   color: #FFF;
   font-size: 14px;
+}
+
+#cookie-form-body {
+  padding: 10px;
 }
 
 #cookie-form {
@@ -230,4 +234,40 @@ table {
 
 :focus {
   outline: none;
+}
+
+.label {
+  text-align: right;
+  vertical-align: top;
+  padding: 4px;
+}
+
+.data {
+  vertical-align: top;
+}
+
+.data input[type="text"] {
+  width: 200px;
+}
+
+.data textarea {
+  resize: none;
+  width: 200px;
+  height: 120px;
+}
+
+.data .year {
+  width: 45px;
+}
+
+.data .month {
+  width: 35px;
+}
+
+.data .day {
+  width: 35px;
+}
+
+.data .hours, .minutes, .seconds {
+  width: 35px;
 }

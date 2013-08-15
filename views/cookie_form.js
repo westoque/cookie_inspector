@@ -16,10 +16,16 @@ ci.Views.CookieForm = Backbone.View.extend({
   },
 
   render: function() {
-    var options = this.model.toJSON();
-    options.expires = this.model.expirationDateToISO();
+    var expirationDate = this.model.expirationDateObject();
+    var attributes = this.model.toJSON();
+    attributes.day = expirationDate.getDate();
+    attributes.month = expirationDate.getMonth() + 1;
+    attributes.year = expirationDate.getFullYear();
+    attributes.hours = expirationDate.getHours();
+    attributes.minutes = expirationDate.getMinutes();
+    attributes.seconds = expirationDate.getSeconds();
 
-    this.$el.html(this.template().render(options));
+    this.$el.html(this.template().render(attributes));
     return this;
   },
 
@@ -36,7 +42,8 @@ ci.Views.CookieForm = Backbone.View.extend({
   _onFormSubmit: function(event) {
     event.preventDefault();
     var attrs = this._getFormValues();
-    this.model.save(attrs, { wait: true });
+    this.model.set(attrs);
+    this.model.save({}, { wait: true });
     this.remove();
   },
 
@@ -47,7 +54,13 @@ ci.Views.CookieForm = Backbone.View.extend({
     attrs.domain = this.$('input[name="domain"]').val();
     attrs.path = this.$('input[name="path"]').val();
 
-    var expires = new Date(this.$('input[name="expires"]').val());
+    var year = this.$('input[name="year"]').val();
+    var month = parseInt(this.$('input[name="month"]').val()) - 1;
+    var day = this.$('input[name="day"]').val();
+    var hours = this.$('input[name="hours"]').val();
+    var minutes = this.$('input[name="minutes"]').val();
+    var seconds = this.$('input[name="seconds"]').val();
+    var expires = new Date(year, month, day, hours, minutes, seconds);
     attrs.expirationDate = parseInt(expires.getTime() / 1000);
 
     attrs.session = this.$('input[name="session"]').prop('checked');

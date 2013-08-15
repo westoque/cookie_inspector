@@ -115,74 +115,91 @@
   <script id="cookie-form-tmpl" type="text/template">
     <form id="cookie-form">
       <div id="cookie-form-view-header">New Cookie</div>
+      <div id="cookie-form-body">
+        <table>
+          <tbody>
+            <tr>
+              <th class="label"><label>Name</label></th>
+              <td class="data"><input type="text" name="name" value="{{name}}" /></td>
+            </tr>
+            <tr>
+              <th class="label"><label>Value</label></th>
+              <td class="data"><textarea>{{value}}</textarea></td>
+            </tr>
+            <tr>
+              <th class="label"><label>Domain</label></th>
+              <td class="data"><input type="text" name="domain" value="{{domain}}" /></td>
+            </tr>
+            <tr>
+              <th class="label"><label>Path</label></th>
+              <td class="data"><input type="text" name="path" value="{{path}}" /></td>
+            </tr>
+            <tr>
+              <th class="label"><label>Expires</label></th>
+              <td class="data">
+                <input value="{{month}}" class="month" type="number" placeholder="MM" name="month" min="1" max="12" />
+                /
+                <input value="{{day}}" class="day" type="number" placeholder="DD" name="day" min="1" max="31" />
+                /
+                <input value="{{year}}" class="year" type="number" placeholder="YYYY" name="year" />
+                -
+                <input value="{{hours}}" class="hours" type="number" placeholder="HH" name="hours" min="0" max="23" />
+                :
+                <input value="{{minutes}}" class="minutes" type="number" placeholder="MM" name="minutes" min="0" max="59" />
+                :
+                <input value="{{seconds}}" class="seconds" type="number" placeholder="SS" name="seconds" min="0" max="59" />
+              </td>
+            </tr>
+            <tr>
+              <th class="label"><label>Session</label></th>
+              <td class="data">
+                {{#session}}
+                  <input type="checkbox" name="session" checked="checked" />
+                {{/session}}
+                {{^session}}
+                  <input type="checkbox" name="session" />
+                {{/session}}
+              </td>
+            </tr>
+            <tr>
+              <th class="label"><label>Host Only</label></th>
+              <td class="data">
+                {{#hostOnly}}
+                  <input type="checkbox" name="hostOnly" checked="checked" />
+                {{/hostOnly}}
+                {{^hostOnly}}
+                  <input type="checkbox" name="hostOnly" />
+                {{/hostOnly}}
+              </td>
+            </tr>
+            <tr>
+              <th class="label"><label>HTTP Only</label></th>
+              <td class="data">
+                {{#httpOnly}}
+                  <input type="checkbox" name="httpOnly" checked="checked" />
+                {{/httpOnly}}
+                {{^httpOnly}}
+                  <input type="checkbox" name="httpOnly" />
+                {{/httpOnly}}
+              </td>
+            </tr>
+            <tr>
+              <th class="label"><label>Secure</label></th>
+              <td class="data">
+                {{#secure}}
+                  <input type="checkbox" name="secure" checked="checked" />
+                {{/secure}}
+                {{^secure}}
+                  <input type="checkbox" name="secure" />
+                {{/secure}}
+              </td>
+            </tr>
+          </tbody>
+        </table>
 
-      <div>
-        <label>Name</label>
-        <input type="text" name="name" value="{{name}}" />
+        <button id="submit" type="submit">Submit</button>
+        <button id="cancel">Cancel</button>
       </div>
-
-      <div>
-        <label>Value</label>
-        <textarea>{{value}}</textarea>
-      </div>
-
-      <div>
-        <label>Domain</label>
-        <input type="text" name="domain" value="{{domain}}" />
-      </div>
-
-      <div>
-        <label>Path</label>
-        <input type="text" name="path" value="{{path}}" />
-      </div>
-
-      <div>
-        <label>Expires</label>
-        <input type="datetime-local" name="expires" value="{{expires}}" />
-      </div>
-
-      <div>
-        <label>Session</label>
-        {{#session}}
-          <input type="checkbox" name="session" checked="checked" />
-        {{/session}}
-        {{^session}}
-          <input type="checkbox" name="session" />
-        {{/session}}
-      </div>
-
-      <div>
-        <label>Host Only</label>
-        {{#hostOnly}}
-          <input type="checkbox" name="hostOnly" checked="checked" />
-        {{/hostOnly}}
-        {{^hostOnly}}
-          <input type="checkbox" name="hostOnly" />
-        {{/hostOnly}}
-      </div>
-
-      <div>
-        <label>HTTP Only</label>
-        {{#httpOnly}}
-          <input type="checkbox" name="httpOnly" checked="checked" />
-        {{/httpOnly}}
-        {{^httpOnly}}
-          <input type="checkbox" name="httpOnly" />
-        {{/httpOnly}}
-      </div>
-
-      <div>
-        <label>Secure</label>
-        {{#secure}}
-          <input type="checkbox" name="secure" checked="checked" />
-        {{/secure}}
-        {{^secure}}
-          <input type="checkbox" name="secure" />
-        {{/secure}}
-      </div>
-
-      <button id="submit" type="submit">Submit</button>
-      <button id="cancel">Cancel</button>
     </form>
   </script>
 
@@ -194,8 +211,8 @@
     <div class="context-menu-item-separator"></div>
     <div class="context-menu-item">Remove All Cookies</div>
     <div class="context-menu-item-separator"></div>
-    <div class="context-menu-item">Import Cookies</div>
-    <div class="context-menu-item">Export Cookies</div>
+    <div class="context-menu-item">Import Cookies as JSON</div>
+    <div class="context-menu-item">Export Cookies as JSON</div>
   </script>
 </body>
 </html>
