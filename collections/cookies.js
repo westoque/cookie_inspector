@@ -14,33 +14,55 @@ ci.Collections.Cookies = Backbone.Collection.extend({
   model: ci.Models.Cookie,
 
   sortByAttrDesc: function(attr) {
-      var val;
-      this.comparator = function(a, b) {
-          if (a.get(attr) < b.get(attr)) {
-              val = 1;
-          } else if (a.get(attr) > b.get(attr)) {
-              val = -1;
-          } else {
-              val = 0;
-          }
-          return val;
+    var attrA, attrB, val;
+    this.comparator = function(a, b) {
+      if (attr === 'size') {
+        attrA = a.getSize();
+        attrB = b.getSize();
+      } else if (attr === 'expires') {
+        attrA = a.getExpirationDate();
+        attrB = b.getExpirationDate();
+      } else {
+        attrA = a.get(attr);
+        attrB = b.get(attr);
       }
-      this.sort();
+
+      if (attrA < attrB) {
+        val = 1;
+      } else if (attrA > attrB) {
+        val = -1;
+      } else {
+        val = 0;
+      }
+      return val;
+    }
+    this.sort();
   },
 
   sortByAttrAsc: function(attr) {
-      var val;
-      this.comparator = function(a, b) {
-          if (a.get(attr) > b.get(attr)) {
-              val = 1;
-          } else if (a.get(attr) < b.get(attr)) {
-              val = -1;
-          } else {
-              val = 0;
-          }
-          return val;
+    var attrA, attrB, val;
+    this.comparator = function(a, b) {
+      if (attr === 'size') {
+        attrA = a.getSize();
+        attrB = b.getSize();
+      } else if (attr === 'expires') {
+        attrA = a.getExpirationDate();
+        attrB = b.getExpirationDate();
+      } else {
+        attrA = a.get(attr);
+        attrB = b.get(attr);
       }
-      this.sort();
+
+      if (attrA > attrB) {
+        val = 1;
+      } else if (attrA < attrB) {
+        val = -1;
+      } else {
+        val = 0;
+      }
+      return val;
+    }
+    this.sort();
   },
 
   _onCookiesRead: function(data) {

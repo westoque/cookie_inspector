@@ -16,14 +16,16 @@ ci.Views.CookieForm = Backbone.View.extend({
   },
 
   render: function() {
-    var expirationDate = this.model.expirationDateObject();
     var attributes = this.model.toJSON();
-    attributes.day = expirationDate.getDate();
-    attributes.month = expirationDate.getMonth() + 1;
-    attributes.year = expirationDate.getFullYear();
-    attributes.hours = expirationDate.getHours();
-    attributes.minutes = expirationDate.getMinutes();
-    attributes.seconds = expirationDate.getSeconds();
+    var expirationDate = this.model.getExpirationDate();
+    if (expirationDate) {
+      attributes.day = expirationDate.getDate();
+      attributes.month = expirationDate.getMonth() + 1;
+      attributes.year = expirationDate.getFullYear();
+      attributes.hours = expirationDate.getHours();
+      attributes.minutes = expirationDate.getMinutes();
+      attributes.seconds = expirationDate.getSeconds();
+    }
 
     this.$el.html(this.template().render(attributes));
     return this;

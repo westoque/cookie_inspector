@@ -18,7 +18,10 @@ ci.Views.Cookie = Backbone.View.extend({
   },
 
   render: function() {
-    this.$el.html(this.template().render(this.model.toJSON()));
+    var attributes = this.model.toJSON()
+    attributes.size = this.model.getSize();
+    attributes.expires = this.model.getExpirationDate();
+    this.$el.html(this.template().render(attributes));
     return this;
   },
 
