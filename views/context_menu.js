@@ -31,10 +31,12 @@ ci.Views.ContextMenu = Backbone.View.extend({
     event.preventDefault();
     this.remove();
 
+    var today = new Date();
+    var oneYearFromToday = new Date(today.getFullYear() + 1, today.getMonth() + 1, today.getDate());
     chrome.devtools.inspectedWindow.eval('window.document.domain', function(domain) {
       var cookie = new ci.Models.Cookie({
         domain: domain,
-        expirationDate: (new Date().getTime() / 1000),
+        expirationDate: (oneYearFromToday.getTime() / 1000),
         hostOnly: false,
         httpOnly: false,
         name: 'Cookie',
