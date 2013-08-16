@@ -56,6 +56,17 @@
         }.bind(this));
       }
 
+      if (command === 'removeAllCookies') {
+        chrome.tabs.get(tabId, function(tab) {
+          chrome.cookies.getAll({ url: tab.url }, function(cookies) {
+            for (var i = 0; i < cookies.length; i += 1) {
+              chrome.cookies.remove({ url: tab.url, name: cookies[i].name });
+            }
+            port.postMessage({ command: command, data: { cookies: [] } });
+          });
+        });
+      }
+
       if (command === 'cookies:read') {
         chrome.tabs.get(tabId, function(tab) {
           chrome.cookies.getAll({ url: tab.url }, function(cookies) {

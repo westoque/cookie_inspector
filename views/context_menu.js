@@ -6,6 +6,7 @@ ci.Views.ContextMenu = Backbone.View.extend({
     'click #add-new-cookie' : '_onAddNewCookieClick',
     'click #edit-cookie' : '_onEditCookieClick',
     'click #remove-cookie' : '_onRemoveCookieClick',
+    'click #remove-all-cookies' : '_onRemoveAllCookiesClick',
     'blur' : '_onBlur'
   },
 
@@ -49,10 +50,16 @@ ci.Views.ContextMenu = Backbone.View.extend({
     });
   },
 
-  _onRemoveCookieClick: function() {
+  _onRemoveCookieClick: function(event) {
     event.preventDefault();
     this.remove();
     this.model.destroy();
+  },
+
+  _onRemoveAllCookiesClick: function(event) {
+    event.preventDefault();
+    this.remove();
+    socket.postMessage({ command: 'removeAllCookies' });
   },
 
   _onEditCookieClick: function(event) {

@@ -6,6 +6,7 @@ ci.Collections.Cookies = Backbone.Collection.extend({
     socket.on('cookies:read', this._onCookiesRead.bind(this));
     socket.on('cookies:create', this._onCookiesCreate.bind(this));
     socket.on('cookies:update', this._onCookiesUpdate.bind(this));
+    socket.on('removeAllCookies', this._onRemoveAllCookies.bind(this));
     socket.on('navigate', this._onNavigate.bind(this));
   },
 
@@ -63,6 +64,10 @@ ci.Collections.Cookies = Backbone.Collection.extend({
       return val;
     }
     this.sort();
+  },
+
+  _onRemoveAllCookies: function(data) {
+    this.reset(data.cookies);
   },
 
   _onCookiesRead: function(data) {
