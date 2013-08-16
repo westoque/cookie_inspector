@@ -40,8 +40,14 @@ Backbone.sync = function(method, model, options) {
 
   params.command = model.url + ':' + method;
 
-  if (options.data == null && model && (method === 'delete' || method === 'create' || method === 'update' || method === 'patch')) {
+  if (options.data == null && model && (method === 'delete' || method === 'create' || method === 'patch')) {
     params.data = options.attrs || model.toJSON(options);
+  }
+
+  if (options.data == null && method === 'update') {
+    params.data = options.attrs || {};
+    params.data.previousAttributes = model.previousAttributes();
+    params.data.changedAttributes = model.changedAttributes();
   }
 
   socket.postMessage(params);

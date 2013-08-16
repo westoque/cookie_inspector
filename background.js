@@ -99,6 +99,33 @@
           });
         });
       }
+
+      if (command === 'cookies:update') {
+        var changedAttributes = msg.data.changedAttributes;
+        var previousAttributes = msg.data.previousAttributes;
+
+        if (changedAttributes) {
+          chrome.tabs.get(tabId, function(tab) {
+            chrome.cookies.remove({ url: tab.url, name: previousAttributes.name }, function(cookie) {
+              var details = {
+                url: tab.url,
+                name: changedAttributes.name || previousAttributes.name,
+                value: changedAttributes.value || previousAttributes.value,
+                domain: changedAttributes.domain || previousAttributes.domain,
+                path: changedAttributes.path || previousAttributes.path,
+                secure: changedAttributes.secure || previousAttributes.secure,
+                httpOnly: changedAttributes.httpOnly || previousAttributes.httpOnly,
+                expirationDate: changedAttributes.expirationDate || previousAttributes.expirationDate
+              };
+
+              chrome.cookies.set(details, function(cookie) {
+                cookie.id = previousAttributes.id;
+                port.postMessage({ command: command, data: cookie })
+              });
+            });
+          });
+        }
+      }
     },
 
     _listenForNavigate: function() {

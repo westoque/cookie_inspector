@@ -5,6 +5,7 @@ ci.Collections.Cookies = Backbone.Collection.extend({
   initialize: function() {
     socket.on('cookies:read', this._onCookiesRead.bind(this));
     socket.on('cookies:create', this._onCookiesCreate.bind(this));
+    socket.on('cookies:update', this._onCookiesUpdate.bind(this));
     socket.on('navigate', this._onNavigate.bind(this));
   },
 
@@ -49,6 +50,11 @@ ci.Collections.Cookies = Backbone.Collection.extend({
       c.id = this.ctr;
     }.bind(this));
     this.reset(data.cookies);
+  },
+
+  _onCookiesUpdate: function(attrs) {
+    var cookie = this.get(attrs.id);
+    cookie.set(attrs);
   },
 
   _onCookiesCreate: function(cookie) {
