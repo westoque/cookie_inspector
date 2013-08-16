@@ -152,45 +152,25 @@
             <tr>
               <th class="label"><label>Session</label></th>
               <td class="data">
-                {{#session}}
-                  <input type="checkbox" name="session" checked="checked" />
-                {{/session}}
-                {{^session}}
-                  <input type="checkbox" name="session" />
-                {{/session}}
+                <input type="checkbox" name="session" {{#session}}checked="checked"{{/session}} />
               </td>
             </tr>
             <tr>
               <th class="label"><label>Host Only</label></th>
               <td class="data">
-                {{#hostOnly}}
-                  <input type="checkbox" name="hostOnly" checked="checked" />
-                {{/hostOnly}}
-                {{^hostOnly}}
-                  <input type="checkbox" name="hostOnly" />
-                {{/hostOnly}}
+                <input type="checkbox" name="hostOnly" {{#hostOnly}}checked="checked"{{/hostOnly}} />
               </td>
             </tr>
             <tr>
               <th class="label"><label>HTTP Only</label></th>
               <td class="data">
-                {{#httpOnly}}
-                  <input type="checkbox" name="httpOnly" checked="checked" />
-                {{/httpOnly}}
-                {{^httpOnly}}
-                  <input type="checkbox" name="httpOnly" />
-                {{/httpOnly}}
+                <input type="checkbox" name="httpOnly" {{#httpOnly}}checked="checked"{{/httpOnly}} />
               </td>
             </tr>
             <tr>
               <th class="label"><label>Secure</label></th>
               <td class="data">
-                {{#secure}}
-                  <input type="checkbox" name="secure" checked="checked" />
-                {{/secure}}
-                {{^secure}}
-                  <input type="checkbox" name="secure" />
-                {{/secure}}
+                <input type="checkbox" name="secure" {{#secure}}checked="checked"{{/secure}} />
               </td>
             </tr>
           </tbody>
