@@ -35,25 +35,6 @@ ci.Models.Cookie = Backbone.Model.extend({
     } else {
       return null;
     }
-  },
-
-  expirationDateToISO: function() {
-    var date = this.expirationDateObject();
-    var year = date.getFullYear();
-
-    var month = date.getMonth() + 1;
-    month = month > 9 ? month : '0' + month;
-
-    var day = date.getDate()
-    day = day > 9 ? day : '0' + day;
-
-    var hours = date.getHours();
-    hours = hours > 9 ? hours : '0' + hours;
-
-    var minutes = date.getMinutes();
-    minutes = minutes > 9 ? minutes : '0' + minutes;
-
-    return year + '-' + month + '-' + day + 'T' + hours + ':' + minutes;
   }
 
 });
