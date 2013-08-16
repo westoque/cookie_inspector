@@ -205,9 +205,11 @@
 
   <script id="context-menu-tmpl" type="text/template">
     <div id="add-new-cookie" class="context-menu-item">Add New Cookie</div>
-    <div class="context-menu-item-separator"></div>
-    <div id="edit-cookie" class="context-menu-item">Edit Cookie</div>
-    <div id="remove-cookie" class="context-menu-item">Remove Cookie</div>
+    {{#isInRow}}
+      <div class="context-menu-item-separator"></div>
+      <div id="edit-cookie" class="context-menu-item">Edit Cookie</div>
+      <div id="remove-cookie" class="context-menu-item">Remove Cookie</div>
+    {{/isInRow}}
     <div class="context-menu-item-separator"></div>
     <div id="remove-all-cookies" class="context-menu-item">Remove All Cookies</div>
     <div class="context-menu-item-separator"></div>

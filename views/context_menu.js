@@ -20,7 +20,7 @@ ci.Views.ContextMenu = Backbone.View.extend({
   },
 
   render: function() {
-    this.$el.html(this.template().render());
+    this.$el.html(this.template().render({ isInRow: this.model }));
     this.$el.css('top', this.y);
     this.$el.css('left', this.x);
     this.$el.attr('tabindex', '0');

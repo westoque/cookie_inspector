@@ -2,6 +2,10 @@ ci.Views.Content = Backbone.View.extend({
 
   id: 'content',
 
+  events: {
+    'contextmenu .filler' : '_onContextMenu'
+  },
+
   initialize: function() {
     this.cookies = this.options.cookies;
     this.listenTo(this.cookies, 'reset', this._onCookiesReset.bind(this));
@@ -35,6 +39,17 @@ ci.Views.Content = Backbone.View.extend({
   _addOne: function(cookie) {
     var view = new ci.Views.Cookie({model: cookie});
     this.$('table tbody').prepend(view.render().el);
+  },
+
+  _onContextMenu: function(event) {
+    var view = new ci.Views.ContextMenu({
+      x: event.clientX,
+      y: event.clientY
+    });
+    $(document.body).append(view.render().el);
+    view.$el.focus();
+    event.stopPropagation();
+    event.preventDefault();
   }
 
 });
