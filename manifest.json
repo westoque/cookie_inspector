@@ -14,13 +14,13 @@
    "devtools_page": "devtools-page.html",
    "description": "Edit cookies right from the inspector tab",
    "homepage_url": "https://github.com/westoque",
-   //"icons": {
-      //"128": "pagespeed-128.png",
-      //"16": "pagespeed-16.png",
-      //"32": "pagespeed-32.png",
-      //"48": "pagespeed-48.png",
-      //"64": "pagespeed-64.png"
-   //},
+   "icons": {
+      "128": "cookie-128.png",
+      "16": "cookie-16.png",
+      "32": "cookie-32.png",
+      "48": "cookie-48.png",
+      "64": "cookie-64.png"
+   },
    "manifest_version": 2,
    "minimum_chrome_version": "19.0",
    "name": "Cookie Inspector",
