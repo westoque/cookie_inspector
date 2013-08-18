@@ -12,7 +12,7 @@
    }],
    "content_security_policy": "default-src 'self'; connect-src http: https:; script-src 'self' 'unsafe-eval' https://chrome-devtools-frontend.appspot.com; img-src 'self' data:; style-src 'self' 'unsafe-inline'; frame-src 'self' about: ",
    "devtools_page": "devtools-page.html",
-   "description": "Edit cookies right from the inspector tab",
+   "description": "Missing cookie editor for Google Chrome",
    "homepage_url": "https://github.com/westoque",
    "icons": {
       "128": "cookie-128.png",
