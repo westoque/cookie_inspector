@@ -12,6 +12,10 @@ Coming Soon:
 
 - Import/Export Cookies (SOON)
 
+## Contributions
+
+Icons by [Oxygen Team](http://www.oxygen-icons.org/)
+
 ## License
 
 MIT
