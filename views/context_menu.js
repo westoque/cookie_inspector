@@ -46,9 +46,10 @@ ci.Views.ContextMenu = Backbone.View.extend({
         value: 'Value'
       });
 
-      var view = new ci.Views.CookieForm({ model: cookie });
-      $(document.body).append(view.render().el);
-      view.$('input').eq(0).focus();
+      if (ci.editor) { ci.editor.remove();  }
+      ci.editor = new ci.Views.CookieForm({ model: cookie });
+      $(document.body).append(ci.editor.render().el);
+      ci.editor.$('input').eq(0).focus();
     });
   },
 
@@ -68,9 +69,10 @@ ci.Views.ContextMenu = Backbone.View.extend({
     event.preventDefault();
     this.remove();
 
-    var view = new ci.Views.CookieForm({ model: this.model });
-    $(document.body).append(view.render().el);
-    view.$('input').eq(0).focus();
+    if (ci.editor) { ci.editor.remove();  }
+    ci.editor = new ci.Views.CookieForm({ model: this.model });
+    $(document.body).append(ci.editor.render().el);
+    ci.editor.$('input').eq(0).focus();
   },
 
   _onBlur: function(event) {

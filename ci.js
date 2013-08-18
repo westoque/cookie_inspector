@@ -55,6 +55,12 @@ Backbone.sync = function(method, model, options) {
 
 var ci = {
 
+  /**
+   * Pointer used by the ContextMenu to keep track
+   * if the editor is open or not.
+   */
+  editor: null,
+
   resizers: {},
 
   Models: {},
