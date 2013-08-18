@@ -289,3 +289,16 @@ table {
 .data .hours, .minutes, .seconds {
   width: 35px;
 }
+
+.data.checkboxes {
+  text-align: center;
+  font-weight: bold;
+}
+
+.data.checkboxes span {
+  margin-right: 8px;
+}
+
+.data.buttons {
+  text-align: center;
+}
