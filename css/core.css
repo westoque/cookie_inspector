@@ -260,6 +260,10 @@ table {
   height: 80px;
 }
 
+.data textarea:focus {
+  outline-width: 5px;
+}
+
 .data .year {
   width: 45px;
 }
