@@ -1,14 +1,13 @@
 # Cookie Inspector
 
-A chrome extension that adds a "cookies" panel in the inspector. Use it to
-manage cookies in chrome.
+The missing Cookie manager for the Chrome Browser. Adds a "cookies" panel in
+the inspector panel. Use it to manage cookies in chrome.
 
 Features:
 
 - Add, Edit, Remove Cookies
-- Import/Export Cookies
+- Import/Export Cookies (SOON)
 
-## Development
+## License
 
-Open `development.html` to open the extension in development mode. This
-means not loading the chrome extension in the Chrome browser.
+MIT
