@@ -7,6 +7,7 @@ ci.Views.CookieForm = Backbone.View.extend({
   },
 
   events: {
+    'click input[name="session"]' : '_onSessionClick',
     'click #cancel'       : '_onCancelClick',
     'submit #cookie-form' : '_onFormSubmit'
   },
@@ -29,6 +30,11 @@ ci.Views.CookieForm = Backbone.View.extend({
 
     this.$el.html(this.template().render(attributes));
     return this;
+  },
+
+  _onSessionClick: function() {
+    var session = this.$('input[name="session"]').prop('checked');
+    $('.expires-input').prop('disabled', session);
   },
 
   _onCancelClick: function(event) {
