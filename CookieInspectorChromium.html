@@ -157,20 +157,20 @@
             <tr>
               <td colspan="2" class="data checkboxes">
                 <span>
-                  <input type="checkbox" name="session" {{#session}}checked="checked"{{/session}} />
-                  <label>Session</label>
+                  <input id="session-checkbox" type="checkbox" name="session" {{#session}}checked="checked"{{/session}} />
+                  <label for="session-checkbox">Session</label>
                 </span>
                 <span>
-                  <input type="checkbox" name="hostOnly" {{#hostOnly}}checked="checked"{{/hostOnly}} />
-                  <label>Host Only</label>
+                  <input id="hostOnly-checkbox"type="checkbox" name="hostOnly" {{#hostOnly}}checked="checked"{{/hostOnly}} />
+                  <label for="hostOnly-checkbox">Host Only</label>
                 </span>
                 <span>
-                  <input type="checkbox" name="httpOnly" {{#httpOnly}}checked="checked"{{/httpOnly}} />
-                  <label>HTTP Only</label>
+                  <input id="httpOnly-checkbox" type="checkbox" name="httpOnly" {{#httpOnly}}checked="checked"{{/httpOnly}} />
+                  <label for="httpOnly-checkbox">HTTP Only</label>
                 </span>
                 <span>
-                  <input type="checkbox" name="secure" {{#secure}}checked="checked"{{/secure}} />
-                  <label>Secure</label>
+                  <input id="secure-checkbox" type="checkbox" name="secure" {{#secure}}checked="checked"{{/secure}} />
+                  <label for="secure-checkbox">Secure</label>
                 </span>
               </td>
             </tr>
