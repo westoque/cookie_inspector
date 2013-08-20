@@ -87,6 +87,11 @@ var ci = {
     // Add the resizers
     var $resizers = $('#header table th');
     for (var i = 1; i < $resizers.length; i += 1) {
+      // If its the last col
+      if ((i + 1) === $resizers.length) {
+        continue;
+      }
+
       var view = new ci.Views.Resizer({$column: $resizers.eq(i)});
       view.$el.attr('data-index', i - 1);
       this.resizers[i] = view;

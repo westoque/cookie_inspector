@@ -26,6 +26,9 @@ ci.Views.Header = Backbone.View.extend({
   _onHeaderClick: function(e) {
     e.preventDefault();
     var $target = $(e.currentTarget);
+
+    if ($target.hasClass('corner')) { return; }
+
     var $ths = this.$('th');
     $ths.removeClass('desc');
     $ths.removeClass('asc');

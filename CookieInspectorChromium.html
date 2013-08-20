@@ -30,7 +30,7 @@
   <script id="header-tmpl" type="text/template">
     <table style="width: 100%; height: 100%;">
       <colgroup span="8">
-        <col style="width: 15%;">
+        <col style="width: 14.8%;">
         <col style="width: 40%;">
         <col style="width: 10%;">
         <col style="width: 5%;">
@@ -38,6 +38,7 @@
         <col style="width: 15%;">
         <col style="width: 5%;">
         <col style="width: 5%;">
+        <col style="width: 14px;">
       </colgroup>
       <tbody>
         <tr>
@@ -49,6 +50,7 @@
           <th data-col="expires"><div>Expires (GMT)</div></th>
           <th data-col="httpOnly"><div>HTTP</div></th>
           <th data-col="secure"><div>Secure</div></th>
+          <th class="corner"></th>
         </tr>
       </tbody>
     </table>
@@ -57,7 +59,7 @@
   <script id="content-tmpl" type="text/template">
       <table style="width: 100%; height: 100%;">
         <colgroup span="8">
-          <col style="width: 15%;">
+          <col style="width: 14.8%;">
           <col style="width: 40%;">
           <col style="width: 10%;">
           <col style="width: 5%;">
@@ -65,9 +67,11 @@
           <col style="width: 15%;">
           <col style="width: 5%;">
           <col style="width: 5%;">
+          <col style="width: 14px;">
         </colgroup>
         <tbody>
           <tr class="filler">
+            <td></td>
             <td></td>
             <td></td>
             <td></td>
@@ -105,6 +109,8 @@
       {{#secure}}
         <div class="green">True</div>
       {{/secure}}
+    </td>
+    <td>
     </td>
   </script>
 
