@@ -141,17 +141,17 @@
             <tr>
               <th class="label"><label>Expires</label></th>
               <td class="data">
-                <input value="{{month}}" class="expires-input month" type="number" placeholder="MM" name="month" min="1" max="12" {{#session}}disabled="disabled"{{/session}} />
+                <input value="{{month}}" class="expires-input month" type="number" placeholder="MM" name="month" min="1" max="12" {{#session}}disabled="disabled"{{/session}} required>
                 /
-                <input value="{{day}}" class="expires-input day" type="number" placeholder="DD" name="day" min="1" max="31" {{#session}}disabled="disabled"{{/session}} />
+                <input value="{{day}}" class="expires-input day" type="number" placeholder="DD" name="day" min="1" max="31" {{#session}}disabled="disabled"{{/session}} required>
                 /
-                <input value="{{year}}" class="expires-input year" type="number" placeholder="YYYY" name="year" {{#session}}disabled="disabled"{{/session}} />
+                <input value="{{year}}" class="expires-input year" type="number" placeholder="YYYY" name="year" {{#session}}disabled="disabled"{{/session}} required>
                 -
-                <input value="{{hours}}" class="expires-input hours" type="number" placeholder="HH" name="hours" min="0" max="23" {{#session}}disabled="disabled"{{/session}} />
+                <input value="{{hours}}" class="expires-input hours" type="number" placeholder="HH" name="hours" min="0" max="23" {{#session}}disabled="disabled"{{/session}} required>
                 :
-                <input value="{{minutes}}" class="expires-input minutes" type="number" placeholder="MM" name="minutes" min="0" max="59" {{#session}}disabled="disabled"{{/session}} />
+                <input value="{{minutes}}" class="expires-input minutes" type="number" placeholder="MM" name="minutes" min="0" max="59" {{#session}}disabled="disabled"{{/session}} required>
                 :
-                <input value="{{seconds}}" class="expires-input seconds" type="number" placeholder="SS" name="seconds" min="0" max="59" {{#session}}disabled="disabled"{{/session}} />
+                <input value="{{seconds}}" class="expires-input seconds" type="number" placeholder="SS" name="seconds" min="0" max="59" {{#session}}disabled="disabled"{{/session}} required>
               </td>
             </tr>
             <tr>

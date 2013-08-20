@@ -87,8 +87,9 @@
             path: data.path,
             secure: data.secure,
             httpOnly: data.httpOnly,
-            expirationDate: data.expirationDate
           };
+
+          if (!data.session) { details.expirationDate = data.expirationDate; }
 
           chrome.cookies.set(details, function(cookie) {
             port.postMessage({ command: command, data: cookie })
@@ -126,8 +127,17 @@
                 path: changedAttributes.path || previousAttributes.path,
                 secure: changedAttributes.secure || previousAttributes.secure,
                 httpOnly: changedAttributes.httpOnly || previousAttributes.httpOnly,
-                expirationDate: changedAttributes.expirationDate || previousAttributes.expirationDate
               };
+
+              if (changedAttributes.session === void(0)) {
+                if (!previousAttributes.session) {
+                  details.expirationDate = previousAttributes.expirationDate;
+                }
+              } else {
+                if (!changedAttributes.session) {
+                  details.expirationDate = changedAttributes.expirationDate;
+                }
+              }
 
               chrome.cookies.set(details, function(cookie) {
                 cookie.id = previousAttributes.id;

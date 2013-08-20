@@ -81,6 +81,14 @@ ci.Collections.Cookies = Backbone.Collection.extend({
 
   _onCookiesUpdate: function(attrs) {
     var cookie = this.get(attrs.id);
+    // We have to add this here because chrome
+    // doesn't pass {expirationDate: null} included
+    // with the attrs. This causes a bug in the model
+    // to not detect that the expirationDate has changed
+    // when changed the session to false in the cookie form.
+    if (attrs.session) {
+      cookie.unset('expirationDate');
+    }
     cookie.set(attrs);
   },
 
