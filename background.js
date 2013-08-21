@@ -83,12 +83,12 @@
             url: tab.url,
             name: data.name,
             value: data.value,
-            domain: data.domain,
             path: data.path,
             secure: data.secure,
             httpOnly: data.httpOnly,
           };
 
+          if (!data.hostOnly) { details.domain = data.domain; }
           if (!data.session) { details.expirationDate = data.expirationDate; }
 
           chrome.cookies.set(details, function(cookie) {
@@ -123,11 +123,22 @@
                 url: tab.url,
                 name: changedAttributes.name || previousAttributes.name,
                 value: changedAttributes.value || previousAttributes.value,
-                domain: changedAttributes.domain || previousAttributes.domain,
                 path: changedAttributes.path || previousAttributes.path,
                 secure: changedAttributes.secure || previousAttributes.secure,
                 httpOnly: changedAttributes.httpOnly || previousAttributes.httpOnly,
               };
+
+              // If it's undefined, it means that the `hostOnly` value
+              // did not get changed, therefore, get the previous value.
+              if (changedAttributes.hostOnly === void(0)) {
+                if (previousAttributes.hostOnly === false) {
+                  details.domain = changedAttributes.domain || previousAttributes.domain;
+                }
+              } else {
+                if (changedAttributes.hostOnly === false) {
+                  details.domain = changedAttributes.domain || previousAttributes.domain;
+                }
+              }
 
               if (changedAttributes.session === void(0)) {
                 if (!previousAttributes.session) {
