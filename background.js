@@ -123,10 +123,22 @@
                 url: tab.url,
                 name: changedAttributes.name || previousAttributes.name,
                 value: changedAttributes.value || previousAttributes.value,
-                path: changedAttributes.path || previousAttributes.path,
-                secure: changedAttributes.secure || previousAttributes.secure,
-                httpOnly: changedAttributes.httpOnly || previousAttributes.httpOnly,
+                path: changedAttributes.path || previousAttributes.path
               };
+
+              // `secure` attribute
+              if (changedAttributes.secure === void(0)) {
+                details.secure = previousAttributes.secure;
+              } else {
+                details.secure = changedAttributes.secure;
+              }
+
+              // `httpOnly` attribute
+              if (changedAttributes.httpOnly === void(0)) {
+                details.httpOnly = previousAttributes.httpOnly;
+              } else {
+                details.httpOnly = changedAttributes.httpOnly;
+              }
 
               // If it's undefined, it means that the `hostOnly` value
               // did not get changed, therefore, get the previous value.
@@ -140,6 +152,7 @@
                 }
               }
 
+              // `expirationDate` attribute
               if (changedAttributes.session === void(0)) {
                 if (!previousAttributes.session) {
                   details.expirationDate = previousAttributes.expirationDate;
