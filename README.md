@@ -5,12 +5,13 @@ the inspector panel. Use it to manage cookies in chrome.
 
 Features:
 
-- Add, Edit, Remove Cookies
+- View, Add, Edit, Remove Cookies
 - Live Reloading (No need to close and open the inspector when you change URLs)
+- Export Cookies
 
 Coming Soon:
 
-- Import/Export Cookies (SOON)
+- Import Cookies (SOON)
 
 ## Design
 
