@@ -81,7 +81,7 @@ var ci = {
     var contentView = new ci.Views.Content({cookies: this.cookies});
     $(document.body).append(contentView.render().el);
 
-    var footerView = new ci.Views.Footer();
+    var footerView = new ci.Views.Footer({cookies: this.cookies});
     $(document.body).append(footerView.render().el);
 
     // Add the resizers

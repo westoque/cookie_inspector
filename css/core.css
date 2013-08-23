@@ -81,7 +81,7 @@ table {
 #content {
   position: absolute;
   top: 23px;
-  bottom: 30px;
+  bottom: 23px;
   left: 0;
   right: 0;
   overflow-x: hidden;
@@ -137,12 +137,19 @@ table {
 }
 
 #footer {
+  font-size: 12px;
+  color: #FFF;
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  height: 30px;
+  height: 23px;
   background-color: rgb(101, 111, 130);
+}
+
+#footer #cookies-count-container {
+  margin-top: 3px;
+  margin-left: 4px;
 }
 
 #modal-view {
