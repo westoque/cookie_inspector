@@ -7,6 +7,7 @@ ci.Views.ContextMenu = Backbone.View.extend({
     'click #edit-cookie' : '_onEditCookieClick',
     'click #remove-cookie' : '_onRemoveCookieClick',
     'click #remove-all-cookies' : '_onRemoveAllCookiesClick',
+    'click #export-all-cookies' : '_onExportAllCookiesClick',
     'blur' : '_onBlur'
   },
 
@@ -63,6 +64,17 @@ ci.Views.ContextMenu = Backbone.View.extend({
     event.preventDefault();
     this.remove();
     socket.postMessage({ command: 'removeAllCookies' });
+  },
+
+  _onExportAllCookiesClick: function(event) {
+    event.preventDefault();
+    this.remove();
+    var a = document.createElement('a');
+    var blob = new Blob([JSON.stringify(ci.cookies.toJSON(), null, "  ")]);
+    var url = URL.createObjectURL(blob);
+    a.href = url;
+    a.download = 'export.json';
+    a.click();
   },
 
   _onEditCookieClick: function(event) {
