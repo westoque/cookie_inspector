@@ -40,10 +40,6 @@ fetching cookies, adding, removing and so on. The background sends
 messages to the client, and the client then either adds, removes, or
 updates it to the list.
 
-## Contributions
-
-Icons by [Oxygen Team](http://www.oxygen-icons.org/)
-
 ## License
 
 MIT
