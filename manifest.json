@@ -13,5 +13,5 @@
    "minimum_chrome_version": "19.0",
    "name": "Cookie Inspector",
    "permissions": [ "cookies", "*://*/", "tabs", "unlimitedStorage", "webNavigation", "http://*/*", "https://*/*" ],
-   "version": "2.0.3"
+   "version": "2.0.4"
 }
