@@ -12,6 +12,6 @@
    "manifest_version": 2,
    "minimum_chrome_version": "19.0",
    "name": "Cookie Inspector",
-   "permissions": [ "cookies", "*://*/", "tabs", "unlimitedStorage", "webNavigation", "http://*/*", "https://*/*" ],
+   "permissions": [ "cookies" ],
    "version": "2.0.4"
 }
