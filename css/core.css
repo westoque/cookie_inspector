@@ -47,6 +47,10 @@ table {
   -webkit-user-select: none;
 }
 
+.darkTheme #header table th {
+    color: #333;
+}
+
 #header table th.desc div {
   background-image: url(/images/tree_up.png);
   background-repeat: no-repeat;
@@ -61,6 +65,10 @@ table {
 
 #header table th:active {
   background: #FFF;
+}
+
+.darkTheme #header table th:active {
+  background: #444;
 }
 
 #header table th.corner {
@@ -102,6 +110,10 @@ table {
   padding: 1px 4px;
 }
 
+.darkTheme #content table td {
+    color: #DDD;
+}
+
 #content table td div {
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -130,6 +142,10 @@ table {
 
 #content table tr.cookie-row:hover {
   background: #E3E3E3;
+}
+
+.darkTheme #content table tr.cookie-row:hover {
+  background: #444;
 }
 
 #content table tr.filler td {
