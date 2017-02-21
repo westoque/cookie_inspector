@@ -2,6 +2,10 @@
 
 ### Master
 
+### Release 2.0.7
+
+- Bump version to sync with Chrome Web Store version.
+
 ### Release 2.0.5
 
 - [#10](https://github.com/westoque/cookie_inspector/pull/10) Narrow down manifest permissions
