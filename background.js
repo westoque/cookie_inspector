@@ -43,8 +43,6 @@
     },
 
     _onPortMessageReceived: function(msg, port) {
-      console.log('MSG: ', msg);
-
       var tabId   = msg.tabId;
       var command = msg.command;
 
