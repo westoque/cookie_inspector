@@ -5,7 +5,8 @@ ci.Views.Cookie = Backbone.View.extend({
   tagName: 'tr',
 
   events: {
-    'contextmenu' : '_onContextMenu'
+    'contextmenu' : '_onContextMenu',
+    'dblclick' : '_onDblClick'
   },
 
   initialize: function() {
@@ -35,6 +36,15 @@ ci.Views.Cookie = Backbone.View.extend({
     view.$el.focus();
     event.stopPropagation();
     event.preventDefault();
+  },
+
+  _onDblClick: function(event) {
+    event.preventDefault();
+
+    if (ci.editor) { ci.editor.remove(); }
+    ci.editor = new ci.Views.CookieForm({ model: this.model });
+    $(document.body).append(ci.editor.render().el);
+    ci.editor.$('input').eq(0).focus();
   }
 
 });

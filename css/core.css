@@ -46,6 +46,12 @@ table {
   -webkit-user-select: none;
 }
 
+.darkTheme #header table th {
+    background: #242424;
+    color: #C0C9D3;
+    border-color: #3E3E3E;
+}
+
 #header table th.desc div {
   background-image: url(/images/tree_up.png);
   background-repeat: no-repeat;
@@ -60,6 +66,14 @@ table {
 
 #header table th:active {
   background: #FFF;
+}
+
+.darkTheme #header table th:hover {
+  background: #303030;
+}
+
+.darkTheme #header table th:active {
+  background: #4F4F4F;
 }
 
 #header table th.corner {
@@ -93,12 +107,21 @@ table {
   -webkit-background-size: 1px 46px;
 }
 
+.darkTheme #content table {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0)), color-stop(0.5, rgba(0, 0, 0, 0)), color-stop(0.5, rgba(255, 255, 255, 0.025)), to(rgba(255, 255, 255, 0.025)));
+}
+
 #content table td {
   border-right: 1px solid rgb(179, 179, 179);
   border-spacing: 0;
   height: 21px;
   vertical-align: middle;
   padding: 1px 4px;
+}
+
+.darkTheme #content table td {
+    color: #C0C9D3;
+    border-color: #3E3E3E;
 }
 
 #content table td div {
@@ -129,6 +152,10 @@ table {
 
 #content table tr.cookie-row:hover {
   background: #E3E3E3;
+}
+
+.darkTheme #content table tr.cookie-row:hover {
+  background: #482F0B;
 }
 
 #content table tr.filler td {
@@ -179,6 +206,12 @@ table {
   box-shadow: -1px 0 3px rgba(0,0,0,0.08);
   overflow-x: hidden;
   overflow-y: scroll;
+}
+
+.darkTheme #cookie-form-view {
+    background: #2A2A2A;
+    color: #C0C9D3;
+    border-color: #5E5E5E;
 }
 
 #cookie-form-view-header {

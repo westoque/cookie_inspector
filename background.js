@@ -43,8 +43,6 @@
     },
 
     _onPortMessageReceived: function(msg, port) {
-      console.log('MSG: ', msg);
-
       var tabId   = msg.tabId;
       var command = msg.command;
 
@@ -153,14 +151,16 @@
               }
 
               // `expirationDate` attribute
-              if (changedAttributes.session === void(0)) {
-                if (!previousAttributes.session) {
-                  details.expirationDate = previousAttributes.expirationDate;
-                }
-              } else {
-                if (!changedAttributes.session) {
+              var isSessionChanged = (changedAttributes.session !== void(0));
+              if (isSessionChanged) {
+                if (changedAttributes.session) {
+                  details.expirationDate = null;
+                } else {
                   details.expirationDate = changedAttributes.expirationDate;
                 }
+              } else {
+                details.expirationDate = changedAttributes.expirationDate ||
+                                         previousAttributes.expirationDate;
               }
 
               chrome.cookies.set(details, function(cookie) {

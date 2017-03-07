@@ -1,0 +1,19 @@
+# Cookie Inspector Changelog
+
+### Master
+
+### Release 2.0.8
+
+- Add Dark Theme (thanks to @clarketm)
+
+### Release 2.0.7
+
+- Bump version to sync with Chrome Web Store version.
+
+### Release 2.0.5
+
+- [#10](https://github.com/westoque/cookie_inspector/pull/10) Narrow down manifest permissions
+- [#6](https://github.com/westoque/cookie_inspector/pull/6) Double click cookie row to bring up editing pane
+
+
+marzanaaron@gmail.com
