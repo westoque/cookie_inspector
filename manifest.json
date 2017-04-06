@@ -5,7 +5,7 @@
    "content_security_policy": "default-src 'self'; connect-src http: https:; script-src 'self' 'unsafe-eval' https://chrome-devtools-frontend.appspot.com; img-src 'self' data:; style-src 'self' 'unsafe-inline'; frame-src 'self' about: ",
    "devtools_page": "devtools-page.html",
    "description": "Missing cookie manager for Google Chrome. Edit and create cookies right in the Developer Tools.",
-   "homepage_url": "http://www.bigbadgoose.com",
+   "homepage_url": "http://www.bigbadgoose.com/cookie-inspector",
    "icons": {
       "128": "store-icon-128.png"
    },
@@ -21,5 +21,5 @@
      "http://*/*",
      "https://*/*"
    ],
-   "version": "2.0.8"
+   "version": "2.0.9"
 }
