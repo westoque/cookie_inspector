@@ -8,6 +8,7 @@ ci.Views.ContextMenu = Backbone.View.extend({
     'click #remove-cookie' : '_onRemoveCookieClick',
     'click #remove-all-cookies' : '_onRemoveAllCookiesClick',
     'click #export-all-cookies' : '_onExportAllCookiesClick',
+    'click #import-all-cookies' : '_onImportAllCookiesClick',
     'blur' : '_onBlur'
   },
 
@@ -65,6 +66,33 @@ ci.Views.ContextMenu = Backbone.View.extend({
     this.remove();
     socket.postMessage({ command: 'removeAllCookies' });
   },
+
+  _onImportAllCookiesClick: function(event) {
+    event.preventDefault();
+    this.remove();
+    var input = document.createElement('input');
+    var fr = new FileReader();
+    input.type = 'file';
+    function importCookies() {
+      var cookies = JSON.parse(fr.result);
+      socket.postMessage({ command: 'removeAllCookies' });
+      cookies.forEach(function(c) {
+        delete c.id;
+        socket.postMessage({
+          command: 'cookies:create',
+          data: c,
+        });
+      });
+
+    }
+    function readFile() {
+      fr.addEventListener('loadend', importCookies, false);
+      fr.readAsText(input.files[0]);
+    }
+    input.addEventListener('change', readFile, false);
+    input.click();
+  },
+
 
   _onExportAllCookiesClick: function(event) {
     event.preventDefault();
