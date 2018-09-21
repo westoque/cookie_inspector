@@ -4,13 +4,16 @@
     "google"
   ],
   "rules": {
-    "require-jsdoc": 0
+    "require-jsdoc": 0,
+    "indent": ["error", 2]
   },
   "env": {
+    "es6": true,
     "browser": true
   },
   "globals": {
     "Backbone": true,
-    "chrome": true
+    "chrome": true,
+    "socket": true
   }
 }
