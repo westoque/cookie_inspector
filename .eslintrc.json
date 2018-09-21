@@ -1,6 +1,16 @@
 {
-  "extends": "google",
+  "extends": [
+    "eslint:recommended",
+    "google"
+  ],
   "rules": {
     "require-jsdoc": 0
+  },
+  "env": {
+    "browser": true
+  },
+  "globals": {
+    "Backbone": true,
+    "chrome": true
   }
 }
